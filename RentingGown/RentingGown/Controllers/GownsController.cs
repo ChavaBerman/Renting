@@ -48,7 +48,7 @@ namespace RentingGown.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult MainSearch(int? id_catgory, int? id_season, int? price, string stringSizes, string is_long, string is_light, int? color)
+        public ActionResult MainSearch( DateTime? date, int? id_catgory, int? id_season, int? price, string stringSizes, string is_long, string is_light, int? color)
         {
             SearchDetails searchDetails = new SearchDetails() { color = color, id_catgory = id_catgory, id_season = id_season, is_light = is_light, is_long = is_long, price = price, stringSizes = stringSizes };
             if (Session["searchDetails"] == null)
