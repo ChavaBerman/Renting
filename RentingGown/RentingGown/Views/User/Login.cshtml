@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+<script>
+    function afterLoad() {
+        if (document.getElementById("error").className == "error")
+            swal({
+                icon: 'error',
+                title: 'טעות',
+                text: 'שם משתמש או סיסמה אינם נכונים.'
+            })
+    }
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<body onload="afterLoad()">
+    <section>
+        <div class="block gray ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="account-popup-sec static-popup">
+                            <div class="acount-popup login-popup">
+                                <h3>LOGIN</h3>
+                                <form action="@Url.Action("Login","User")" method="post">
+                                    <div class="field-form">
+                                        <input class="effect-16" type="text" name="name">
+                                        <label>שם משתמש</label>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                    <div class="field-form">
+                                        <input class="effect-16" type="password" name="password">
+                                        <label>סיסמה</label>
+                                        <span class="focus-border"></span>
+                                    </div>
+
+                                    <button type="submit">LOGIN</button>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <input type="hidden" id="error" class="@ViewBag.error" />
+</body>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<!-- Bootstrap -->
+<link href="~/Content/line-awesome.min.css" rel="stylesheet" />
+<!-- Icons -->
+<link href="~/Content/style.css" rel="stylesheet" />
+<!-- Style -->
+<link href="~/Content/responsive.css" rel="stylesheet" />
+<!-- Responsive -->
+<link href="~/Content/colors/colors.css" rel="stylesheet" />
+<!-- color -->

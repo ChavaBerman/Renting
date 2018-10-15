@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Frishman&Berman</title>
+    <link rel="icon" href="~/Images/iconography_launcher_example.png" type="image/x-icon" />
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <link href="~/Content/StyleSheet.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script>
+        function closeLogin() {
+            document.getElementById("password").value = "";
+            document.getElementById("name").value = "";
+            document.getElementById("close").click();
+        }
+    </script>
+</head>
+<body dir="rtl">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="    height: 100px;">
+        <div class="container">
+            <div class="navbar-header">
+                @Html.ActionLink("הוספת שמלה", "AddGown", "Renter", new { }, new { @class = "navbar-brand" })
+                @Html.ActionLink("מחיקה/עריכה", "ShowMyGowns", "Renter", new { }, new { @class = "navbar-brand" })
+                @Html.ActionLink("עריכת פרופיל", "EditProfile", "Renter", new { }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse" style="    margin-right: 4%;    margin-top: 3%;">
+                <div class="acount-header-btn">
+                    <span><a href="/User/LogOut">LogOut</a></span>
+                </div>
+            </div>
+            <img src="~/Images/images/logo.png" style="width: 11%;position: absolute;margin-top: -3%;margin-right: -10%;" />
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - RentingGown</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

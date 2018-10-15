@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<link href="~/Content/StyleSheet.css" rel="stylesheet" />
+<div class="jumbotron">
+  <img src="~/Images/images/logo.png" style="width: 100%;"/>
+    @*<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
+</div>
+<br />
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <h2 style="color:rgb(101, 14, 56)">כניסה</h2>
+        <p>
+            אם את/ה רשום כמשכיר/ה באתר, באפשרותך להוסיף את השמלה שברצונך להשכיר למאגר השמלות. כל משתמש שיחפש שמלות, יוכל להתרשם מהשמלה שלך.
+        </p>
+
+        <p class="btn btn-default">@Html.ActionLink("לכניסה >>", "AddGown", "Connection", new { }, new { @style = "color:rgb(101, 14, 56)" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2 style="color:rgb(101, 14, 56)">חיפוש</h2>
+        <p> החיפוש הוא חופשי, כל גולש/ת יוכל לחפש בו שמלות שיאהב. אם השמלה/ות מוצאת חן בעיניך, הוספ/י אותה לסל הבגדים שלך, לאחר מכן הרשם כשוכר באתר,ותקבל את פרטי המשכיר. </p>
+        <p class="btn btn-default">@Html.ActionLink("לכניסה >>", "Search", "Gowns", new { }, new { @style = "color:rgb(101, 14, 56)" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2 style="color:rgb(101, 14, 56)">הרשמה</h2>
+        <p>הרשמ/י כמשכיר/ה באתר, לאחר מכן תוכל/י להוסיף שמלות למאגר בכל עת.</p>
+        <p class="btn btn-default">@Html.ActionLink("לכניסה >>", "AddRenter", "Connection", new { }, new { @style = "color:rgb(101, 14, 56)" })</p>
+
+    </div>
+</div>
+<!-- Script -->
+<script src="~/Scripts/js/modernizr.js"></script>
+<!-- Modernizer -->
+<script src="~/Scripts/js/jquery-2.1.1.js"></script>
+<!-- Jquery -->
+<script src="~/Scripts/js/script.js"></script>
+<!-- Script -->
+<script src="~/Scripts/js/bootstrap.min.js"></script>
+<!-- Bootstrap -->
+<script src="~/Scripts/js/scrolltopcontrol.js"></script>
+<!-- Nice Select -->
+<script src="~/Scripts/js/choosen.min.js"></script>
+<!-- Nice Select -->
+<script src="~/Scripts/js/rangeslider.js"></script>
+
+<!-- Styles -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<!-- Bootstrap -->
+<link href="~/Content/line-awesome.min.css" rel="stylesheet" />
+<!-- Icons -->
+<link href="~/Content/style.css" rel="stylesheet" />
+<!-- Style -->
+<link href="~/Content/responsive.css" rel="stylesheet" />
+<!-- Responsive -->
+<link href="~/Content/colors/colors.css" rel="stylesheet" />
+<!-- color -->

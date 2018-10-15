@@ -1,0 +1,12 @@
+﻿@model List<RentingGown.Models.Gowns>
+
+@{
+    ViewBag.Title = "ShowGowns";
+}
+
+<h2>ShowGowns</h2>
+
+@foreach (RentingGown.Models.Gowns item in Model)
+{
+    <img src="@item.picture" />
+}

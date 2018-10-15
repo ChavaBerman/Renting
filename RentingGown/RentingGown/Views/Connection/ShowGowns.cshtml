@@ -1,0 +1,92 @@
+﻿@model List<RentingGown.Models.Gowns>
+
+@{
+    ViewBag.Title = "ShowGowns";
+}
+<link href="~/Content/StyleSheet.css" rel="stylesheet" />
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+<script>
+    function empty(x) {
+        document.getElementById("link" + x).style.display = 'none';
+    }
+    $(".basket").click(function () {
+        event.preventDefault();
+  
+        $ajax({
+            url: $(this).attr("href"),
+            method: "get",
+            
+            faild: function (err) {
+                alert(err)
+            }
+        });
+    });
+</script>
+<form >
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal" id="myForm">
+        <h2>תוצאות החיפוש שלך.</h2>
+        @{ var i = 0;}
+        @if ((Session["RealCurrentGowns"] as List<RentingGown.Models.Gowns>).Count > 0)
+        {
+            foreach (RentingGown.Models.Gowns item in (List<RentingGown.Models.Gowns>)Session["RealCurrentGowns"])
+            {
+                <div class="form-group">
+                    @*<div class="detailsOfGown" dir="rtl">*@
+                    <img src="~/Images/@item.picture" style="float:right;height:350px;" />
+
+                    <label class="control-label labels">קוד</label>
+                    <p class="p-details">@item.id_gown</p><br />
+                    <label class="control-label labels">מחיר</label>
+                    <p class="p-details">@item.price</p><br />
+                    <label class="control-label labels">מידה</label>
+                    <p class="p-details ">@item.size</p><br />
+                    <a   style="margin-right:4%;color:rgb(101, 14, 56)"href="/Connection/AddToTheBasket?id=@item.id_gown" class="btn btn-default basket ">הוסף לסל הבגדים</a>
+                    @if (item.id_set > 1)
+                    {
+                        <div id="@(item.id_gown)1" style="float:left;margin-top: -15%;height:350px;"></div>
+                        <div id="@item.id_gown" style="display:none;">
+                            <img src="~/spiffygif_30x30.gif" />
+                        </div>
+                        i++;
+                        <div id="link@(item.id_gown)" style="position: relative;right: 47%;" onclick="empty(@(item.id_gown))">
+                            @Ajax.ActionLink("לצפיה בסט", "ShowSet", new { idSet = item.id_set }, new AjaxOptions()
+                       {
+                           //שיטת הגישה
+                           HttpMethod = "get",
+                           //שם האלמנט בו הנתונים משתנים- פרמטר חובה
+                           UpdateTargetId = item.id_gown.ToString() + "1",
+                           //האם להוסיף או להחליף את הנתונים
+                           InsertionMode = InsertionMode.Replace,
+                           //שם האלמנט שמציג אנימציה של טעינה
+                           //LoadingElementId = item.id_gown.ToString(),
+                           //משך זמן הצגת האנימציה
+                           // LoadingElementDuration = 2000,
+                           // OnBegin = "emptyDiv()"
+                       })
+                        </div>
+                    }
+
+
+                </div>
+
+                //</div>
+                <br />
+                if (i != (Session["RealCurrentGowns"] as List<RentingGown.Models.Gowns>).Count)
+                {
+                    <hr />
+                }
+            }
+            <div>
+                @Html.ActionLink("סיום", "AddTenant")
+            </div>
+        }
+        else
+        {
+            <p>אין פריטים התואמים לחיפוש שלך.</p>
+
+                            @Html.ActionLink("יציאה", "Index", "Home");
+        }
+    </div>
+
+</form>

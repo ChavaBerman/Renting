@@ -1,0 +1,46 @@
+﻿@model List<RentingGown.Models.Gowns>
+@{
+    ViewBag.Title = "MainSearch";
+}
+<script>
+    showGown(gown){
+
+    }
+</script>
+<h2>@Model.Count תוצאות נמצאו</h2>
+
+@{
+    foreach (RentingGown.Models.Gowns item in Model)
+    {
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="listing-box">
+                <a href="/Gowns/showGown/@item.id_gown">
+                    <div class="listing-box-thumb">
+                        <span class="price-list">@item.price</span>
+                        <img src="~/Images/@item.picture" alt="" />
+                        <div class="listing-box-title">
+                            @*<h3><a href="#" title=""></a></h3>*@
+                            <span>Los Angeles /  Sillicon Valley </span>
+                            <span>@item.size</span>
+                        </div>
+                    </div>
+                    <div class="listing-rate-share">
+                        <div class="rated-list">
+                            <b class="la la-star"></b>
+                            <b class="la la-star"></b>
+                            <b class="la la-star"></b>
+                            <b class="la la-star-o"></b>
+                            <b class="la la-star-o"></b>
+                            <span>(13)</span>
+                        </div>
+                        <span><i class="la la-share-alt"></i></span>
+                        @* <a href="#" title=""><i class="la la-heart-o"></i></a>*@
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    }
+}
+

@@ -1,0 +1,858 @@
+﻿@*@model RentingGown.Models.Gowns
+
+    @{
+        ViewBag.Title = "Search";
+    }
+
+    <h2>חפש שמלה</h2>
+
+    <script>
+        function NumberChanged() {
+            var q = document.getElementById("set").value;
+            document.getElementById("sizes").innerHTML = "<div class='form-group'> <label class='control-label col-md-2'>מידה" + 1 + "</label> <div class='col-md-10'><input type='number'required  id='size" + 1 + "'  onchange='CreateArr()'/></div></div>";
+            for (var i = 1; i < q; i++) {
+                document.getElementById("sizes").innerHTML += "<div class='form-group'> <label class='control-label col-md-2'>מידה" + (i + 1) + "</label> <div class='col-md-10'><input type='number' required id='size" + (i + 1) + "' onchange='CreateArr()'/></div></div>";
+
+            }
+        }
+        function CreateArr() {
+            var num = document.getElementById("set").value;
+            document.getElementById("arr").value = "";
+            for (var i = 1; i <= num; i++) {
+                var value = document.getElementById("size" + i).value;
+                document.getElementById("arr").value += value + " ";
+            }
+        }
+    </script>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">קוד שמלה</label>
+                <div class="col-md-10">
+                    <input type="number" maxlength="4" minlength="4" name="id_gown" />
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.id_catgory, "קטגוריה", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("id_catgory", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_catgory, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.id_season, "עונה", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <div class="col-md-10">
+                   @Html.DropDownList("id_season", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_season, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">ארוך/קצר</label>
+                <div class="col-md-10">
+                    <select name="is_long">
+                        <option>ארוך</option>
+                        <option>קצר</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.color, "צבע", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+           @*         @Html.DropDownList("color", null, htmlAttributes: new { @class = "form-control" })*@
+@*@Html.ValidationMessageFor(model => model.color, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">טווח מחירים</label>
+                <div class="col-md-10">בין
+                    <input type="number" name="min_price" /> ל <input type="number" name="max_price" />
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">בהיר/כהה</label>
+                <div class="col-md-10">
+                    <select name="is_long">
+                        <option>בהיר</option>
+                        <option>כהה</option>
+                    </select>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="control-label col-md-2">מספר שמלות</label>
+                <div class="col-md-10">
+                    <input type="number" name="num_of_dress" id="set" min="1" value="1" onchange="NumberChanged()" />
+
+                </div>
+            </div>
+
+            <input type="hidden" id="arr" name="arr" />
+            <div class="form-group">
+                <label class="control-label col-md-2">תאריך מבוקש</label>
+                <div class="col-md-10">
+                    <input type="date" name="date" required />
+
+                </div>
+            </div>
+            <div id="sizes"><div class='form-group'> <label class='control-label col-md-2'>מידה 1</label> <div class='col-md-10'><input type='number' id='size1'required onchange="CreateArr()" /></div></div></div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="חפש" class="btn btn-default btn-primary" />
+                </div>
+            </div>
+        </div>
+        <img src="@ViewBag.src" />
+    }*@
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+@*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@
+
+
+
+
+@*@model RentingGown.Models.Gowns
+
+    @{
+        ViewBag.Title = "Search";
+    }
+
+    <h2>חפש שמלה</h2>
+
+    <script>
+        function NumberChanged() {
+            var q = document.getElementById("set").value;
+            document.getElementById("sizes").innerHTML = "<div class='form-group'> <label class='control-label col-md-2'>מידה" + 1 + "</label> <div class='col-md-10'><input type='number'required  id='size" + 1 + "'  onchange='CreateArr()'/></div></div>";
+            for (var i = 1; i < q; i++) {
+                document.getElementById("sizes").innerHTML += "<div class='form-group'> <label class='control-label col-md-2'>מידה" + (i + 1) + "</label> <div class='col-md-10'><input type='number' required id='size" + (i + 1) + "' onchange='CreateArr()'/></div></div>";
+
+            }
+        }
+        function CreateArr() {
+            var num = document.getElementById("set").value;
+            document.getElementById("arr").value = "";
+            for (var i = 1; i <= num; i++) {
+                var value = document.getElementById("size" + i).value;
+                document.getElementById("arr").value += value + " ";
+            }
+        }
+    </script>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">קוד שמלה</label>
+                <div class="col-md-10">
+                    <input type="number" maxlength="4" minlength="4" name="id_gown" />
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.id_catgory, "קטגוריה", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("id_catgory", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_catgory, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.id_season, "עונה", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <div class="col-md-10">
+                    @Html.DropDownList("id_season", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_season, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">ארוך/קצר</label>
+                <div class="col-md-10">
+                    <select name="is_long">
+                        <option>ארוך</option>
+                        <option>קצר</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.color, "צבע", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                   @Html.DropDownList("color", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.color, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">טווח מחירים</label>
+                <div class="col-md-10">בין
+                    <input type="number" name="min_price" /> ל <input type="number" name="max_price" />
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">בהיר/כהה</label>
+                <div class="col-md-10">
+                    <select name="is_long">
+                        <option>בהיר</option>
+                        <option>כהה</option>
+                    </select>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="control-label col-md-2">מספר שמלות</label>
+                <div class="col-md-10">
+                    <input type="number" name="num_of_dress" id="set" min="1" value="1" onchange="NumberChanged()" />
+
+                </div>
+            </div>
+
+            <input type="hidden" id="arr" name="arr" />
+            <div class="form-group">
+                <label class="control-label col-md-2">תאריך מבוקש</label>
+                <div class="col-md-10">
+                    <input type="date" name="date" required />
+
+                </div>
+            </div>
+            <div id="sizes"><div class='form-group'> <label class='control-label col-md-2'>מידה 1</label> <div class='col-md-10'><input type='number' id='size1'required onchange="CreateArr()" /></div></div></div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="חפש" class="btn btn-default btn-primary" />
+                </div>
+            </div>
+        </div>
+        <img src="@ViewBag.src" />
+    }
+
+    @*<div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>*@
+
+@*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@
+
+@model RentingGown.Models.Gowns
+@{
+    ViewBag.Title = "Search";
+}
+
+<head>
+    <script>
+        var listOfSizes;
+       function createStringSizes(){
+            var stringSizes = "";
+            for (let size of listOfSizes) {
+                if (document.getElementById(size).checked)
+                    stringSizes += size + " ";
+           }
+           document.getElementById("stringSizes").value = stringSizes;
+        }
+
+        function changeResult() {
+            $ajax({
+                url: "",
+                method: "get",
+
+                faild: function (err) {
+                    alert(err)
+                }
+            });
+        }
+        function createClick() {
+            document.getElementById("mainSearchbtn").click();
+        }
+
+        function func() {
+            var details = new Object();
+            details.id_category = $('#id_catgory').val();
+            details.id_season = $('#id_season').val();
+            details.price = $('#price').val();
+            var stringSizes = "";
+            for (let size of listOfSizes) {
+                if (document.getElementById(size).checked)
+                    stringSizes += size + " ";
+            }
+            details.sizes = stringSizes;
+            alert("clicked");
+            //$.ajax({
+            //    type: "POST",
+            //    url: "/Connection/MainSearch",
+            //    data: JSON.stringify(details),
+            //    contentType: "application/json; charset=utf-8",
+            //    // dataType: "json",
+            //    success: function (response) {
+            //        alert("success");
+            //        if (response != null) {
+            //            for (let i of response)
+            //                alert(i);
+            //            //  $("#SearchContent").innerHtml = '';
+            //            //`<div class='col - md - 4 col - sm - 6 col - xs - 12'>
+            //            //            <div class='listing-box' >
+            //            //                <div class='listing-box-thumb'>
+            //            //                    <span class='price-list'>${response.price}</span>
+            //            //                    <img src='${response.picture}' alt='noneeee' />
+            //            //                    <div class='listing-box-title'>
+            //            //                        <h3><a href='#' title=''>Coffee Parade</a></h3>
+            //            //                        <span>Los Angeles /  Sillicon Valley </span>
+            //            //                        <span>size ${response.size}</span>
+            //            //                    </div>
+            //            //                </div>
+            //            //                <div class='listing-rate-share'>
+            //            //                    <div class='rated-list'>
+            //            //                        <b class='la la-star'></b>
+            //            //                        <b class='la la-star'></b>
+            //            //                        <b class='la la-star'></b>
+            //            //                        <b class='la la-star-o'></b>
+            //            //                        <b class='la la-star-o'></b>
+            //            //                        <span>(13)</span>
+            //            //                    </div>
+            //            //                    <span><i class='la la-share-alt'></i></span>
+            //            //                    <a href='#' title=""><i class='la la-heart-o'></i></a>
+            //            //                </div>
+            //            //                        </div >
+            //            //                    </div >`
+            //        }
+            //        else {
+            //            alert("Something went wrong");
+            //        }
+            //    },
+            //    failure: function (response) {
+            //        alert("failure");
+            //        alert(response.responseText);
+            //    },
+            //    error: function (response) {
+            //        alert("error");
+            //        alert(response.responseText);
+            //    }
+            //});
+        }
+        function fillReturnedData() {
+            if (document.getElementById("id_catgory").value != 1)
+                document.getElementById("mainSearchbtn").click();
+        }
+        function changeCatgory() {
+
+            let sizesForGirls = ["2", "4", "6", "8", "10", "12", "14", "16", "18", "20", "22"];
+            let sizesForWomen = ["34", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54"];
+            let sizesForBabies = ["3 חד'", "6 חד'", "9 חד'", "12 חד'", "18 חד'", "24 חד'", "30 חד'", "36 חד'"];
+            let catgory = document.getElementById("id_catgory").value;
+
+            if (catgory == 1)
+                listOfSizes = sizesForGirls;
+            else if (catgory == 4)
+                listOfSizes = sizesForBabies;
+            else listOfSizes = sizesForWomen;
+
+            document.getElementById("sizes").innerHTML = " <span>מידות</span><br />";
+            for (let size of listOfSizes) {
+                document.getElementById("sizes").innerHTML += `<input type="checkbox" onchange="createStringSizes()" id="${size}"/>${size}`
+            }
+
+
+
+        }
+        function loadFile() {
+            changeCatgory();
+            fillReturnedData();
+        }
+
+    </script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="creativelayers">
+
+    <title>Prolist - Directory Listing HTML Template</title>
+
+    <!-- Styles -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap -->
+    <link href="~/Content/line-awesome.min.css" rel="stylesheet" />
+    <!-- Icons -->
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <!-- Style -->
+    <link href="~/Content/responsive.css" rel="stylesheet" />
+    <!-- Responsive -->
+    <link href="~/Content/colors/colors.css" rel="stylesheet" />
+    <!-- color -->
+
+    <link rel="shortcut icon" type="image/png" href="~/images/favicon.ico" />
+</head>
+<body dir="rtl" onload="loadFile()">
+
+    @*<div class="page-loading">
+            <div class="loadery"></div>
+        </div>*@
+    <div class="theme-layout">
+
+
+        <section>
+            <div class="block no-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="inner-header">
+                                <h2>דף חיפוש</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="block gray ">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9 column">
+
+                            @*<div class="directory-searcher" dir="ltr">
+                                    <form>
+                                        <div class="field"><input type="text" placeholder="חפש מילת מפתח"></div>
+                                        <div class="field">
+                                            <select class="chosen-select" tabindex="2">
+                                                <option value="ארוך">ארוך</option>
+                                                <option value="קצר">קצר</option>
+
+                                            </select>
+                                        </div>
+                                        <div class="field">
+                                            @Html.DropDownList("id_catgory", null, htmlAttributes: new { @class = "chosen-select", @tabindex = "2" })
+
+                                        </div>
+                                        <div class="field">
+                                            <button type="submit"><i class="la la-search"></i>SEARCH</button>
+                                        </div>
+                                    </form>
+                                </div>*@
+                            <div class="grids-listings">
+                                <div class="row" id="SearchContent">
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="listing-box">
+                                            <div class="listing-box-thumb">
+                                                <span class="price-list">$149.90</span>
+                                                <img src="http://placehold.it/263x235" alt="" />
+                                                <div class="listing-box-title">
+                                                    <h3><a href="#" title="">Coffee Parade</a></h3>
+                                                    <span>Los Angeles /  Sillicon Valley </span>
+                                                    <span>(416) 551-0589</span>
+                                                </div>
+                                            </div>
+                                            <div class="listing-rate-share">
+                                                <div class="rated-list">
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star-o"></b>
+                                                    <b class="la la-star-o"></b>
+                                                    <span>(13)</span>
+                                                </div>
+                                                <span><i class="la la-share-alt"></i></span>
+                                                <a href="#" title=""><i class="la la-heart-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="listing-box">
+                                            <div class="listing-box-thumb">
+                                                <span class="price-list">$149.90</span>
+                                                <img src="http://placehold.it/263x235" alt="" />
+                                                <div class="listing-box-title">
+                                                    <h3><a href="#" title="">Evin Electroni</a></h3>
+                                                    <span>Los Angeles /  Sillicon Valley </span>
+                                                    <span>(416) 551-0589</span>
+                                                </div>
+                                            </div>
+                                            <div class="listing-rate-share">
+                                                <div class="rated-list">
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star-o"></b>
+                                                    <b class="la la-star-o"></b>
+                                                    <span>(13)</span>
+                                                </div>
+                                                <span><i class="la la-share-alt"></i></span>
+                                                <a href="#" title=""><i class="la la-heart-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="listing-box">
+                                            <div class="listing-box-thumb">
+                                                <span class="price-list">$149.90</span>
+                                                <img src="http://placehold.it/263x235" alt="" />
+                                                <div class="listing-box-title">
+                                                    <h3><a href="#" title="">Baloon City Excursion</a></h3>
+                                                    <span>Los Angeles /  Sillicon Valley </span>
+                                                    <span>(416) 551-0589</span>
+                                                </div>
+                                            </div>
+                                            <div class="listing-rate-share">
+                                                <div class="rated-list">
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star-o"></b>
+                                                    <b class="la la-star-o"></b>
+                                                    <span>(13)</span>
+                                                </div>
+                                                <span><i class="la la-share-alt"></i></span>
+                                                <a href="#" title=""><i class="la la-heart-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="listing-box">
+                                            <div class="listing-box-thumb">
+                                                <span class="price-list">$149.90</span>
+                                                <img src="http://placehold.it/263x235" alt="" />
+                                                <div class="listing-box-title">
+                                                    <h3><a href="#" title="">Extreme Sport</a></h3>
+                                                    <span>Los Angeles /  Sillicon Valley </span>
+                                                    <span>(416) 551-0589</span>
+                                                </div>
+                                            </div>
+                                            <div class="listing-rate-share">
+                                                <div class="rated-list">
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star-o"></b>
+                                                    <b class="la la-star-o"></b>
+                                                    <span>(13)</span>
+                                                </div>
+                                                <span><i class="la la-share-alt"></i></span>
+                                                <a href="#" title=""><i class="la la-heart-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="listing-box">
+                                            <div class="listing-box-thumb">
+                                                <span class="price-list">$149.90</span>
+                                                <img src="http://placehold.it/263x235" alt="" />
+                                                <div class="listing-box-title">
+                                                    <h3><a href="#" title="">Food Seminar</a></h3>
+                                                    <span>Los Angeles /  Sillicon Valley </span>
+                                                    <span>(416) 551-0589</span>
+                                                </div>
+                                            </div>
+                                            <div class="listing-rate-share">
+                                                <div class="rated-list">
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star-o"></b>
+                                                    <b class="la la-star-o"></b>
+                                                    <span>(13)</span>
+                                                </div>
+                                                <span><i class="la la-share-alt"></i></span>
+                                                <a href="#" title=""><i class="la la-heart-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="listing-box">
+                                            <div class="listing-box-thumb">
+                                                <span class="price-list">$149.90</span>
+                                                <img src="http://placehold.it/263x235" alt="" />
+                                                <div class="listing-box-title">
+                                                    <h3><a href="#" title="">Evin Electroni</a></h3>
+                                                    <span>Los Angeles /  Sillicon Valley </span>
+                                                    <span>(416) 551-0589</span>
+                                                </div>
+                                            </div>
+                                            <div class="listing-rate-share">
+                                                <div class="rated-list">
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star-o"></b>
+                                                    <b class="la la-star-o"></b>
+                                                    <span>(13)</span>
+                                                </div>
+                                                <span><i class="la la-share-alt"></i></span>
+                                                <a href="#" title=""><i class="la la-heart-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="listing-box">
+                                            <div class="listing-box-thumb">
+                                                <span class="price-list">$149.90</span>
+                                                <img src="http://placehold.it/263x235" alt="" />
+                                                <div class="listing-box-title">
+                                                    <h3><a href="#" title="">Baloon City Excursion</a></h3>
+                                                    <span>Los Angeles /  Sillicon Valley </span>
+                                                    <span>(416) 551-0589</span>
+                                                </div>
+                                            </div>
+                                            <div class="listing-rate-share">
+                                                <div class="rated-list">
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star-o"></b>
+                                                    <b class="la la-star-o"></b>
+                                                    <span>(13)</span>
+                                                </div>
+                                                <span><i class="la la-share-alt"></i></span>
+                                                <a href="#" title=""><i class="la la-heart-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="listing-box">
+                                            <div class="listing-box-thumb">
+                                                <span class="price-list">$149.90</span>
+                                                <img src="http://placehold.it/263x235" alt="" />
+                                                <div class="listing-box-title">
+                                                    <h3><a href="#" title="">Extreme Sport</a></h3>
+                                                    <span>Los Angeles /  Sillicon Valley </span>
+                                                    <span>(416) 551-0589</span>
+                                                </div>
+                                            </div>
+                                            <div class="listing-rate-share">
+                                                <div class="rated-list">
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star-o"></b>
+                                                    <b class="la la-star-o"></b>
+                                                    <span>(13)</span>
+                                                </div>
+                                                <span><i class="la la-share-alt"></i></span>
+                                                <a href="#" title=""><i class="la la-heart-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="listing-box">
+                                            <div class="listing-box-thumb">
+                                                <span class="price-list">$149.90</span>
+                                                <img src="http://placehold.it/263x235" alt="" />
+                                                <div class="listing-box-title">
+                                                    <h3><a href="#" title="">Gitar Course</a></h3>
+                                                    <span>Los Angeles /  Sillicon Valley </span>
+                                                    <span>(416) 551-0589</span>
+                                                </div>
+                                            </div>
+                                            <div class="listing-rate-share">
+                                                <div class="rated-list">
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star"></b>
+                                                    <b class="la la-star-o"></b>
+                                                    <b class="la la-star-o"></b>
+                                                    <span>(13)</span>
+                                                </div>
+                                                <span><i class="la la-share-alt"></i></span>
+                                                <a href="#" title=""><i class="la la-heart-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <aside class="col-md-3 column">
+                            <div class="widget">
+                                <div class="side-search-form">
+                                    @using (Ajax.BeginForm("MainSearch", new AjaxOptions
+                                    {
+
+                                        HttpMethod = "get",
+                                        UpdateTargetId = "SearchContent",
+                                        InsertionMode = InsertionMode.Replace,
+                                    }))
+                                    {
+                                        <h3 class="mini-title">סנן לפי:</h3>
+                                        @*<div class="search_widget">
+                                                <div class="side-search-form">
+                                                    <form>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <span>תאריך</span>
+                                                                <input type="date" class="input-style" />
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <span>קטגוריה</span>
+                                                                <div class="field">
+                                                                    @Html.DropDownList("id_catgory", null, htmlAttributes: new { @class = "chosen-select", @tabindex = "2" })
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <span>עונה</span>
+                                                                <select data-placeholder="All Categories" class="chosen-select" tabindex="2">
+                                                                    <option value="All Categories">All Categories</option>
+                                                                    <option value="Restaurants">Restaurants</option>
+                                                                    <option value="Foods">Foods</option>
+                                                                    <option value="Hotels">Hotels</option>
+                                                                    <option value="Bars">Bars</option>
+                                                                    <option value="PlayLands">PlayLands</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="selecteurprix">
+                                                                    <div class="range-slider">
+                                                                        <input class="input-range" type="range" value="250" min="100" max="500">
+                                                                        <div class="valeurprix">
+                                                                            <span class="range-value"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>*@
+                                        <div class="search_widget">
+                                            <div class="side-search-form">
+
+
+                                                <div class="row">
+                                                    @*<div class="col-md-12">
+                                                            <input type="text" class="input-style" placeholder="הכנס מילת מפתח" />
+                                                        </div>*@
+                                                    <div class="col-md-12" style="height:70px">
+                                                        <span>קטגוריה</span>
+                                                        @Html.DropDownList("id_catgory", null, htmlAttributes: new { @class = "chosen-select", @name = "id_catgory", @id = "id_catgory", @onchange = "changeCatgory()" })
+                                                    </div>
+                                                    <div class="col-md-12" style="height:70px">
+                                                        <span>עונה</span>
+                                                        @Html.DropDownList("id_season", null, htmlAttributes: new { @class = "chosen-select", @tabindex = "2", @name = "id_season", @id = "id_season" })
+                                                    </div>
+                                                    <input type="hidden" id="stringSizes" name="stringSizes" />
+                                                    <div class="col-md-12" id="sizes">
+                                                        <span>מידות</span><br />
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="selecteurprix">
+                                                            <div class="range-slider">
+                                                                <span>מחיר</span>
+                                                                <input class="input-range" type="range" value=@{@ViewBag.price} min="100" max="500" name="price" id="price" z-index="2">
+                                                                <div class="valeurprix">
+                                                                    <span class="range-value"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="field">
+                                                        <button type="submit" id="mainSearchbtn">
+                                                            <i class="la la-search"></i>
+                                                            חפש
+
+                                                        </button>
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                        <div class="widget">
+                                            <h3 class="mini-title">חיפוש מישני</h3>
+                                            <div class="side-search-form">
+                                                <form>
+                                                    <div class="row">
+                                                        <div class="col-md-12" style="height:70px">
+                                                            <span>ארוך/קצר</span>
+                                                            <select class="chosen-select" tabindex="2" name="is_long" onchange="createClick()">
+                                                                <option value=""></option>
+                                                                <option value="ארוך">ארוך</option>
+                                                                <option value="קצר">קצר</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-12" style="height:70px">
+                                                            <span>בהיר/כהה</span>
+                                                            <select class="chosen-select" tabindex="2" name="is_light" onchange="createClick()">
+                                                                <option value=""></option>
+                                                                <option value="בהיר">בהיר</option>
+                                                                <option value="כהה">כהה</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-12" style="height:70px">
+                                                            <span>צבע</span>
+                                                            @Html.DropDownList("color", null, htmlAttributes: new { @class = "chosen-select", @tabindex = "2", @name = "color", @onchange = "createClick()" })
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <a href="/Gowns/ShowBasket" title="" class="filter-btn">הצג את סל הבגדים</a>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+    <!-- Script -->
+    <script src="~/Scripts/js/modernizr.js"></script>
+    <!-- Modernizer -->
+    <script src="~/Scripts/js/jquery-2.1.1.js"></script>
+    <!-- Jquery -->
+    <script src="~/Scripts/js/script.js"></script>
+    <!-- Script -->
+    <script src="~/Scripts/js/bootstrap.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Scripts/js/scrolltopcontrol.js"></script>
+    <!-- ScrollTopControl -->
+    @*<script src="~/Scripts/js/slick.min.js"></script>*@
+    <!-- Slick -->
+    @*<script src="~/Scripts/js/scrolly.js"></script>*@
+    <!-- Slick -->
+    @*<script src="~/Scripts/js/sumoselect.js"></script>*@
+    <!-- Nice Select -->
+    <script src="~/Scripts/js/choosen.min.js"></script>
+    <!-- Nice Select -->
+    <script src="~/Scripts/js/rangeslider.js"></script>
+    <!-- Nice Select -->
+
+</body>

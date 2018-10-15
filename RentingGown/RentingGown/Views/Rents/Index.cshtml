@@ -1,0 +1,75 @@
+﻿@model IEnumerable<RentingGown.Models.Rents>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.payment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_payed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_returned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gowns.picture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gowns1.picture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tenants.fname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tenants1.fname)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.payment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_payed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_returned)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gowns.picture)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gowns1.picture)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tenants.fname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tenants1.fname)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

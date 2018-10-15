@@ -1,0 +1,84 @@
+﻿@model RentingGown.Models.Renters
+
+@{
+    Layout = "~/Views/Shared/_Manager.cshtml";
+}
+
+<section>
+    <div class="block gray ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="account-popup-sec static-popup">
+                        <div class="acount-popup login-popup">
+                            <h2>ערוך פרופיל</h2>
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id_renter" value=@Model.id_renter />
+                                <div class="form-horizontal">
+                                    <hr />
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    @Html.HiddenFor(model => model.id_renter)
+                                    <div class="form-group">
+                                        <label>שם פרטי</label>
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.fname, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.fname, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>שם משפחה</label>
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.lname, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.lname, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>טלפון</label>
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>סלולארי</label>
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.cellphone, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.cellphone, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>כתובת</label>
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="field">
+                                        <button type="submit" id="mainSearchbtn" style="width:20%;">
+                                            שמור
+                                        </button>
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Styles -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<!-- Bootstrap -->
+<link href="~/Content/line-awesome.min.css" rel="stylesheet" />
+<!-- Icons -->
+<link href="~/Content/style.css" rel="stylesheet" />
+<!-- Style -->
+<link href="~/Content/responsive.css" rel="stylesheet" />
+<!-- Responsive -->
+<link href="~/Content/colors/colors.css" rel="stylesheet" />

@@ -1,0 +1,59 @@
+﻿@model List<RentingGown.Models.Renters>
+
+@{
+    Layout = "~/Views/Shared/_Manager.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        
+        <th>
+           שם פרטי
+        </th>
+        <th>
+           שם משפחה
+        </th>
+        <th>
+            טלפון
+        </th>
+        <th>
+           סלולארי
+        </th>
+       
+        <th>
+            כתובת
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cellphone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.ActionLink("ערוך", "EditRenter", new { id = item.id_renter }) |
+                @Html.ActionLink("מחק", "Delete", new { id = item.id_renter })
+            </td>
+        </tr>
+    }
+
+</table>

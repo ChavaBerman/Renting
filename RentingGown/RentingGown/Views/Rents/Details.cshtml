@@ -1,0 +1,82 @@
+﻿@model RentingGown.Models.Rents
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Rents</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.payment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.payment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_payed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_payed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_returned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_returned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gowns.picture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gowns.picture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gowns1.picture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gowns1.picture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tenants.fname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tenants.fname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tenants1.fname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tenants1.fname)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

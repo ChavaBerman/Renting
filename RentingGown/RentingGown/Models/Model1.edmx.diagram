@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="270c254ea51943fe8a9df93b318cbaf4" Name="Diagram1">
+        <EntityTypeShape EntityType="RentingGownModel.Areas" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentingGownModel.Catgories" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentingGownModel.Colors" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentingGownModel.Gowns" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentingGownModel.Renters" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentingGownModel.Seasons" Width="1.5" PointX="3" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentingGownModel.Sets" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentingGownModel.Tenants" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="RentingGownModel.FK__Renters__id_area__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="RentingGownModel.FK__Tenants__id_area__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="RentingGownModel.FK__Gowns__id_catgor__0DAF0CB0" ManuallyRouted="false" />
+        <AssociationConnector Association="RentingGownModel.FK__Gowns__color__182C9B23" ManuallyRouted="false" />
+        <AssociationConnector Association="RentingGownModel.FK__Gowns__id_renter__0EA330E9" ManuallyRouted="false" />
+        <AssociationConnector Association="RentingGownModel.FK__Gowns__id_season__0F975522" ManuallyRouted="false" />
+        <AssociationConnector Association="RentingGownModel.FK__Gowns__id_season__108B795B" ManuallyRouted="false" />
+        <AssociationConnector Association="RentingGownModel.FK__Gowns__id_set__117F9D94" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RentingGownModel.Status" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="RentingGownModel.Users" Width="1.5" PointX="5.375" PointY="7.75" />
+        <EntityTypeShape EntityType="RentingGownModel.Rents" Width="1.5" PointX="8" PointY="4" />
+        <AssociationConnector Association="RentingGownModel.FK__Tenants_s__id_go__15502E781" />
+        <AssociationConnector Association="RentingGownModel.FK__Tenants_s__id_go__35BCFE0A1" />
+        <AssociationConnector Association="RentingGownModel.FK__Tenants_s__id_te__1367E6061" />
+        <AssociationConnector Association="RentingGownModel.FK__Tenants_s__id_te__36B122431" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

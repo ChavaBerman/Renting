@@ -1,0 +1,99 @@
+﻿@model IEnumerable<RentingGown.Models.Gowns>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.picture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_long)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_light)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_available)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.size)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Catgories.catgory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Renters.fname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seasons.season)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seasons1.season)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sets.id_set)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Colors.color)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.picture)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_long)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_light)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_available)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.size)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Catgories.catgory)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Renters.fname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seasons.season)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seasons1.season)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sets.id_set)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Colors.color)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_gown }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_gown }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_gown })
+        </td>
+    </tr>
+}
+
+</table>

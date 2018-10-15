@@ -1,0 +1,46 @@
+﻿h1 {
+    font-family: Calibri Light ;
+
+}
+h2 {
+    font-family: Calibri Light;
+    color: rgb(82, 14, 56) !important;
+}
+body {
+    font-family: Calibri Light;
+    font-size: 17px;
+}
+.navbar-inverse  {
+    background-color: black ;
+}
+.btn-primary {
+    background-color: rgb(82, 14, 56);
+    border-color: black;
+    color:#000000
+}
+.btn-primary:hover{
+    background-color:black;
+   
+}
+.form-control,select,input{
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    height: 34px;
+    font-size:15px;
+}
+#detailsOfGown > a {
+    position: absolute;
+    right: 40%;
+    top: 22%;
+}
+.labels {
+    margin-right: 2.5%;
+    color: rgb(101, 14, 56);
+}
+.p-details {
+    position: relative !important;
+    right: 11% !important;
+}
+.form-horizontal .control-label, .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline{
+    margin-top:-7px !important;
+}

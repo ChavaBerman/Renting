@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Renter.cshtml";
+}
+<script>
+    function afterLoad() {
+        if (document.getElementById("msg").name == "1")
+            swal({
+                icon: 'success',
+                title: 'מצוין',
+                text: 'השמלה נוספה בהצלחה.'
+            })
+    }
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+
+<body onload="afterLoad()">
+    <h2>ברוכים הבאים</h2>
+    @*@{ if (Session["user"] != null)
+            {
+                <span>@{(Session["user"] as RentingGown.Models.Renters).fname}</span>
+        }
+
+        }*@
+    <input type="hidden" id="msg" name=@ViewBag.msg />
+</body>
+

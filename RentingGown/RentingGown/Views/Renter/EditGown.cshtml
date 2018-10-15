@@ -1,0 +1,132 @@
+﻿@model RentingGown.Models.Gowns
+
+@{
+Layout = "~/Views/Shared/_Renter.cshtml";
+}
+<script>
+    function changeCatgory() {
+        let catgory = document.getElementById("id_catgory").value;
+        let sizesForGirls = ["2", "4", "6", "8", "10", "12", "14", "16", "18", "20", "22"];
+        let sizesForWomen = ["34", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54"];
+        let sizesForBabies = ["3", "6", "9", "12", "18", "24", "30", "36"];
+        let listOfSizes = [];
+        if (catgory == 1)
+            listOfSizes = sizesForGirls;
+        else if (catgory == 4)
+            listOfSizes = sizesForBabies;
+        else listOfSizes = sizesForWomen;
+        if (listOfSizes == sizesForBabies)
+            document.getElementById("sizeLabel").innerHTML = "מידה (בחדשים)"
+        else document.getElementById("sizeLabel").innerHTML = "מידה";
+        document.getElementById("size").innerHTML = "";
+        for (let size of listOfSizes) {
+            document.getElementById("size").innerHTML += `<option>${size}</option>`;
+
+        }
+    }
+</script>
+
+<h2>Edit</h2>
+<body onload="changeCatgory()">
+    <section>
+        <div class="block gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="side-search-form">
+                            <div class="row">
+                                <h2>ערוך שמלה</h2>
+
+                                <form method="post" enctype="multipart/form-data">
+                                 
+
+                                    <div class="form-horizontal">
+                                        <hr />
+                                      <input type="hidden" name="id_gown" value=@Model.id_gown />
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.id_catgory, "קטגוריה", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.DropDownList("id_catgory", null, htmlAttributes: new { @class = "form-control", @onchange = "changeCatgory()" })
+                                                @Html.ValidationMessageFor(model => model.id_catgory, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.id_season, "עונה", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.DropDownList("id_season", null, htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.id_season, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.color, "צבע", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.DropDownList("color", null, htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.color, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">ארוך/קצר</label>
+                                            <div class="col-md-10">
+                                                <select name="is_long">
+                                                    <option>ארוך</option>
+                                                    <option>קצר</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.price, "מחיר", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                                @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">בהיר/כהה</label>
+                                            <div class="col-md-10">
+                                                <select name="is_light">
+                                                    <option>בהיר</option>
+                                                    <option>כהה</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div id="files"><div class='form-group'> <label class='control-label col-md-2'>תמונה (באין שינוי התמונה תישאר התמונה הקודמת)</label> <div class='col-md-10'><input type='file' class="click-add-pictures" id='file1' name="picture" accept="image/jpeg" /></div></div></div>
+                                        @*<div id="sizes"><div class='form-group'> <label class='control-label col-md-2'>מידה</label> <div class='col-md-10'><input type='number' id='size1' name="size" required /></div></div></div>*@
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2" id="sizeLabel">מידה</label>
+                                            <div class="col-md-10">
+                                                <select id="size" name="size"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="filter-btn" style="width:20%">שמור</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div>
+                                    @Html.ActionLink("לחזרה לרשימה", "ShowMyGowns")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<!-- Styles -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<!-- Bootstrap -->
+<link href="~/Content/line-awesome.min.css" rel="stylesheet" />
+<!-- Icons -->
+<link href="~/Content/style.css" rel="stylesheet" />
+<!-- Style -->
+<link href="~/Content/responsive.css" rel="stylesheet" />
+<!-- Responsive -->
+<link href="~/Content/colors/colors.css" rel="stylesheet" />

@@ -1,0 +1,16 @@
+﻿@model RentingGown.Models.Sets
+
+@{
+                /**/
+
+                ViewBag.Title = "ShowSet";
+}
+
+
+@if (Model.picture != null)
+{<img src="~/Images/@Model.picture" style="height:350px;" />
+}
+
+else
+{<p>לא קיימת תמונה עבור סט זה</p>            }
+

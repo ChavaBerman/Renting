@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = " ShowDetails";
+}
+<script>
+    function Print()
+    {
+        window.print();
+    }
+</script>
+<div class="form-horizontal">
+    <h2>פרטי המשכיר/ים</h2>
+    @{int i = 0;
+
+    }
+    @foreach (RentingGown.Models.Gowns item in (List<RentingGown.Models.Gowns>)Session["listOfGowns"])
+    {
+        RentingGown.Models.Renters Renter = (Session["listRenters"] as List<RentingGown.Models.Renters>)[i++];
+
+        <div class="form-group">
+            <img src="~/Images/@item.picture" style="float:right;height:350px;" />
+            <label class="control-label labels">שם פרטי</label>
+            <p class="p-details">@Renter.fname</p>
+            <label class="control-label labels">שם משפחה</label>
+            <p class="p-details">@Renter.lname</p>
+            <label class="control-label labels">טלפון</label>
+            <p class="p-details">@Renter.phone</p>
+            <label class="control-label labels">סלולארי</label>
+            <p class="p-details">@Renter.cellphone</p>
+            <label class="control-label labels">כתובת</label>
+            <p class="p-details">@Renter.address</p>
+            <label class="control-label labels">עיר</label>
+            <p class="p-details">@Renter.city</p>
+        </div>
+
+    }
+
+    <div>
+        <button onclick="Print()">הדפס</button>
+    </div>
+</div>

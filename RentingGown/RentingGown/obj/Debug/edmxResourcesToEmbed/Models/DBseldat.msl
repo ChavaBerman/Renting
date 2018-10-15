@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RentingGownModelSeldatStoreContainer" CdmEntityContainer="RentingGownEntitiesSeldat">
+    <EntitySetMapping Name="Areas">
+      <EntityTypeMapping TypeName="RentingGownModelSeldat.Areas">
+        <MappingFragment StoreEntitySet="Areas">
+          <ScalarProperty Name="id_area" ColumnName="id_area" />
+          <ScalarProperty Name="area" ColumnName="area" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Catgories">
+      <EntityTypeMapping TypeName="RentingGownModelSeldat.Catgories">
+        <MappingFragment StoreEntitySet="Catgories">
+          <ScalarProperty Name="id_catgory" ColumnName="id_catgory" />
+          <ScalarProperty Name="catgory" ColumnName="catgory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Colors">
+      <EntityTypeMapping TypeName="RentingGownModelSeldat.Colors">
+        <MappingFragment StoreEntitySet="Colors">
+          <ScalarProperty Name="id_color" ColumnName="id_color" />
+          <ScalarProperty Name="color" ColumnName="color" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gowns">
+      <EntityTypeMapping TypeName="RentingGownModelSeldat.Gowns">
+        <MappingFragment StoreEntitySet="Gowns">
+          <ScalarProperty Name="id_gown" ColumnName="id_gown" />
+          <ScalarProperty Name="id_renter" ColumnName="id_renter" />
+          <ScalarProperty Name="id_catgory" ColumnName="id_catgory" />
+          <ScalarProperty Name="picture" ColumnName="picture" />
+          <ScalarProperty Name="id_season" ColumnName="id_season" />
+          <ScalarProperty Name="is_long" ColumnName="is_long" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="is_light" ColumnName="is_light" />
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="id_set" ColumnName="id_set" />
+          <ScalarProperty Name="is_available" ColumnName="is_available" />
+          <ScalarProperty Name="size" ColumnName="size" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Renters">
+      <EntityTypeMapping TypeName="RentingGownModelSeldat.Renters">
+        <MappingFragment StoreEntitySet="Renters">
+          <ScalarProperty Name="id_renter" ColumnName="id_renter" />
+          <ScalarProperty Name="fname" ColumnName="fname" />
+          <ScalarProperty Name="lname" ColumnName="lname" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="cellphone" ColumnName="cellphone" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="id_area" ColumnName="id_area" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Seasons">
+      <EntityTypeMapping TypeName="RentingGownModelSeldat.Seasons">
+        <MappingFragment StoreEntitySet="Seasons">
+          <ScalarProperty Name="id_season" ColumnName="id_season" />
+          <ScalarProperty Name="season" ColumnName="season" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sets">
+      <EntityTypeMapping TypeName="RentingGownModelSeldat.Sets">
+        <MappingFragment StoreEntitySet="Sets">
+          <ScalarProperty Name="id_set" ColumnName="id_set" />
+          <ScalarProperty Name="num_of_set" ColumnName="num_of_set" />
+          <ScalarProperty Name="picture" ColumnName="picture" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tenants">
+      <EntityTypeMapping TypeName="RentingGownModelSeldat.Tenants">
+        <MappingFragment StoreEntitySet="Tenants">
+          <ScalarProperty Name="id_tenant" ColumnName="id_tenant" />
+          <ScalarProperty Name="fname" ColumnName="fname" />
+          <ScalarProperty Name="lname" ColumnName="lname" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="cellphone" ColumnName="cellphone" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="id_area" ColumnName="id_area" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tenants_sets">
+      <EntityTypeMapping TypeName="RentingGownModelSeldat.Tenants_sets">
+        <MappingFragment StoreEntitySet="Tenants-sets">
+          <ScalarProperty Name="id_tenant" ColumnName="id_tenant" />
+          <ScalarProperty Name="id_gown" ColumnName="id_gown" />
+          <ScalarProperty Name="payment" ColumnName="payment" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="is_payed" ColumnName="is_payed" />
+          <ScalarProperty Name="is_returned" ColumnName="is_returned" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,114 @@
+﻿@model RentingGown.Models.Gowns
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Gowns</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.picture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.picture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_long)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_long)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_light)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_light)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_available)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_available)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Catgories.catgory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Catgories.catgory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Renters.fname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Renters.fname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Seasons.season)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seasons.season)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Seasons1.season)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seasons1.season)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sets.id_set)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sets.id_set)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Colors.color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Colors.color)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_gown }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

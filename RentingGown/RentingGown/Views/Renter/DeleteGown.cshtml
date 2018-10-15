@@ -1,0 +1,68 @@
+﻿@model List<RentingGown.Models.Gowns>
+@{
+    ViewBag.Title = "DeleteGown";
+}
+
+<h2>DeleteGown</h2>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<!-- Bootstrap -->
+<link href="~/Content/line-awesome.min.css" rel="stylesheet" />
+<!-- Icons -->
+<link href="~/Content/style.css" rel="stylesheet" />
+<!-- Style -->
+<link href="~/Content/responsive.css" rel="stylesheet" />
+<!-- Responsive -->
+<link href="~/Content/colors/colors.css" rel="stylesheet" />
+<!-- color -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script>
+    function afterLoad() {
+        let msg = document.getElementById("msg").name
+        if (msg != "")
+            swal({
+                icon: 'warning',
+                title: 'שים לב!!!',
+                text: `יש לנו מידע כי השימלה מושכרת בתאריכים: ${msg}.`
+            })
+    }
+</script>
+<body onload="afterLoad()">
+    <section>
+        <div class="block gray" style="margin-top: 4%;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9 column">
+                        <div class="grids-listings">
+                            <div class="row" id="SearchContent">
+                                @{
+                                    if (Model.Count == 0)
+                                    {
+                                        <h3>אין כרגע שמלות על שמך.</h3>
+                                    }
+                                    foreach (RentingGown.Models.Gowns item in Model)
+                                    {
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <div class="listing-box">
+                                                <div class="listing-box-thumb">
+                                                    <a href="/Renter/DeleteGownPost?id=@item.id_gown"><span class="price-list"><span class="glyphicon glyphicon-trash"></span> הסר</span></a>
+                                                    <img src="~/Images/@item.picture" alt="" />
+                                                    <span>מידה: @item.size</span>
+                                                    <div class="listing-rate-share">
+                                                        <span>מידה: @item.size</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                <input type="hidden" id="msg" name=@ViewBag.msg />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>

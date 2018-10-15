@@ -1,0 +1,56 @@
+﻿@model RentingGown.Models.Gowns
+@{
+    ViewBag.Title = "showGown";
+}
+<!-- Styles -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<!-- Bootstrap -->
+<link href="~/Content/line-awesome.min.css" rel="stylesheet" />
+<!-- Icons -->
+<link href="~/Content/style.css" rel="stylesheet" />
+<!-- Style -->
+<link href="~/Content/responsive.css" rel="stylesheet" />
+<!-- Responsive -->
+<link href="~/Content/colors/colors.css" rel="stylesheet" />
+<!-- color -->
+<section>
+    <div class="block gray ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="account-popup-sec static-popup">
+                        <div class="acount-popup register-popup">
+                            <h3>פרטי השמלה</h3>
+                            <form dir="rtl">
+                                <div class="field-form">
+                                    <img src="~/Images/@Model.picture" />
+                                </div>
+                                <div class="field-form">
+                                    <p><b> מחיר: </b>@Model.price</p>
+                                </div>
+                                <div class="field-form">
+                                    <p><b>מידה:</b> @Model.size</p>
+                                </div>
+                                <div class="field-form">
+                                    <p><b>עונה:</b> @ViewBag.season</p>
+                                </div>
+                                <div class="field-form">
+                                    <p><b>קטגוריה:</b> @ViewBag.catgory</p>
+                                </div>
+                                <div class="side-search-form">
+                                    <div class="field">
+                                      
+                                        <a href="/Gowns/AddToTheBasket?id=@Model.id_gown"  class="filter-btn">הוסף לסל הבגדים</a>
+                               
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

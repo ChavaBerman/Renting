@@ -1,0 +1,122 @@
+﻿@model List<RentingGown.Models.Gowns>
+
+@{
+    Layout = "~/Views/Shared/_Manager.cshtml";
+}
+
+
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="~/Scripts/sweetalert.min.js"></script>
+<script>
+    function deleteGown(id) {
+        swal({
+            title: 'האם אתה בטוח שברצונך למחוק שמלה זו?',
+            text: "לא תוכל לשחזר את המידע!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'כן, מחק!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Renter/DeleteGown",
+                    data: JSON.stringify(id),
+                    success: function () {
+                        swal(
+                            'נמחק!',
+                            'שמלתך נמחקה.',
+                            'success'
+                        )
+                    }
+                });
+
+            }
+        })
+    }
+</script>
+<h2>השמלות שלי:</h2>
+<table class="table" dir="rtl">
+    <tr dir="rtl">
+        <th>
+            תמונה
+        </th>
+        <th>
+            ארוך/קצר
+        </th>
+        <th>
+            מחיר
+        </th>
+        <th>
+            בהיר/כהה
+        </th>
+        <th>
+            מידה
+        </th>
+        <th>
+            קטגוריה
+        </th>
+        <th>
+            עונה
+        </th>
+        <th>
+            צבע
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (RentingGown.Models.Gowns item in Model)
+    {
+        <tr dir="rtl">
+            <td>
+                <img src="~/Images/@item.picture" style="height: 7%" />
+            </td>
+            @{
+                if (item.is_long == true)
+                {
+                    <td>ארוך</td>
+                }
+                else
+                {
+                    <td>קצר</td>
+                }
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+
+            @{
+                if (item.is_light == true)
+                {
+                    <td>בהיר</td>
+                }
+                else
+                {
+                    <td>כהה</td>
+                }
+            }
+
+            <td>
+                @Html.DisplayFor(modelItem => item.size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Catgories.catgory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Seasons.season)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Colors.color)
+            </td>
+            <td>
+                @*@Html.ActionLink("עריכה", "EditGown", new { id = item.id_gown }) |
+                    @Html.ActionLink("מחיקה", "Delete", new { id = item.id_gown },new { @onclick="delete()"})*@
+                <a href="/Manager/EditGown?id=@item.id_gown">עריכה</a>
+                <a onclick="deleteGown(@item.id_gown)">מחיקה</a>
+            </td>
+        </tr>
+    }
+
+</table>
