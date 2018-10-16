@@ -19,15 +19,6 @@
     // This example requires the Places library. Include the libraries=places
     // parameter when you first load the API. For example:
     // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-    var place = {};
-    function blurAddress() {
-        if (!place.geometry)
-            swal({
-                icon: 'error',
-                title: 'נתקלנו בבעיה',
-                text: 'כתובת לא תקינה.'
-            })
-    }
 
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -36,7 +27,6 @@
         });
         var card = document.getElementById('pac-card');
         var input = document.getElementById('pac-input');
-        var register = document.getElementById('register');
         var types = document.getElementById('type-selector');
         var strictBounds = document.getElementById('strict-bounds-selector');
 
@@ -61,17 +51,20 @@
             anchorPoint: new google.maps.Point(0, -29)
         });
 
-        input.addEventListener('blur', function () {
+        autocomplete.addListener('place_changed', function () {
             infowindow.close();
             marker.setVisible(false);
-            place = autocomplete.getPlace();
-            if (!place) {
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
                 // User entered the name of a Place that was not suggested and
                 // pressed the Enter key, or the Place Details request failed.
-                window.alert("No details available for input: '" + place.name + "'");
+                swal({
+                    icon: 'error',
+                    title: 'נתקלנו בבעיה',
+                    text: 'כתובת לא תקינה.'
+                })
                 return;
             }
-
 
             // If the place has a geometry, then present it on a map.
             if (place.geometry.viewport) {
