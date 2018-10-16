@@ -29,6 +29,7 @@ namespace RentingGown.Controllers
                 ViewBag.color = new SelectList(db.Colors, "id_color", "color");
                 ViewBag.stringSizes = details.stringSizes.Split(' ').ToArray();
                 ViewBag.price = details.price;
+                ViewBag.date = details.date.ToString("yyyy-MM-dd");
                 //MainSearch(details.id_catgory, details.id_season, details.price, details.stringSizes, details.is_long, details.is_light, details.color);
             }
             else
@@ -40,6 +41,7 @@ namespace RentingGown.Controllers
                 ViewBag.id_set = new SelectList(db.Sets, "id_set", "id_set");
                 ViewBag.color = new SelectList(db.Colors, "id_color", "color");
                 ViewBag.price = 250;
+                ViewBag.date = "2014-02-09";
                 ViewBag.is_light = false;
                 ViewBag.is_dark = false;
                 ViewBag.is_long = false;
@@ -52,7 +54,7 @@ namespace RentingGown.Controllers
         {
             Session["lat"] = lat;
             Session["lng"] = lng;
-            SearchDetails searchDetails = new SearchDetails() { color = color, id_catgory = id_catgory, id_season = id_season, is_light = is_light, is_long = is_long, price = price, stringSizes = stringSizes };
+            SearchDetails searchDetails = new SearchDetails() { color = color, id_catgory = id_catgory, id_season = id_season, is_light = is_light, is_long = is_long, price = price, stringSizes = stringSizes,date=date };
             if (Session["searchDetails"] == null)
             {
                 Session["searchDetails"] = new SearchDetails();
@@ -310,6 +312,11 @@ namespace RentingGown.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Checkout()
+        {
+            return View();
         }
     }
 }

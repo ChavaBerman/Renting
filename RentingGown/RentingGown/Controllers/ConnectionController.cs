@@ -22,6 +22,7 @@ namespace RentingGown.Controllers
         public int? id_catgory { get; set; }
         public int? id_season { get; set; }
         public int? price { get; set; }
+        public DateTime date { get; set; }
 
     }
     public class ConnectionController : Controller

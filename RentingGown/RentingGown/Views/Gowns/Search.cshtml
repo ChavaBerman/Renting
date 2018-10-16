@@ -62,7 +62,8 @@
         }
         function fillReturnedData() {
             if (document.getElementById("id_catgory").value != 1)
-                document.getElementById("mainSearchbtn").click();
+                setTimeout(function () { document.getElementById("mainSearchbtn").click(); }, 500);
+              
         }
         function changeCatgory() {
 
@@ -393,7 +394,7 @@
 
                                                 <div class="row">
                                                     <div class="col-md-12" style="height:70px">
-                                                        <input type="date" class="input-style" name="date" required />
+                                                        <input type="date" class="input-style" name="date" required value="@{@ViewBag.date}"/>
                                                     </div>
                                                     <div class="col-md-12" style="height:70px">
                                                         <span>קטגוריה</span>

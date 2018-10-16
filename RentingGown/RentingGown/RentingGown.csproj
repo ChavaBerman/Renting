@@ -226,6 +226,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min %282%29.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\checkout.css" />
     <Content Include="Content\colors\colors.css" />
     <Content Include="Content\fonts\line-awesome.svg" />
     <Content Include="Content\fonts\slick.svg" />
@@ -402,6 +403,7 @@
     <Content Include="Views\Manager\ShowRents.cshtml" />
     <Content Include="Views\Statistics\Statistics.cshtml" />
     <Content Include="Views\Statistics\ByColor.cshtml" />
+    <Content Include="Views\Gowns\Checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\images\resource\" />
