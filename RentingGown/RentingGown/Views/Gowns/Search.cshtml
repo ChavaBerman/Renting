@@ -5,15 +5,31 @@
 }
 
 <head>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjo2Qe6DhOmWvJ8yO7-PzFjTuZ_8zSPCk&callback=initMap">
+    </script>
     <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    console.log(pos["lat"]);
+                    console.log(pos["lng"]);
+                    document.getElementById("lat").value = pos["lat"];
+                    document.getElementById("lng").value = pos["lng"];
+                })
+            }
+        }
         var listOfSizes;
-       function createStringSizes(){
+        function createStringSizes() {
             var stringSizes = "";
             for (let size of listOfSizes) {
                 if (document.getElementById(size).checked)
                     stringSizes += size + " ";
-           }
-           document.getElementById("stringSizes").value = stringSizes;
+            }
+            document.getElementById("stringSizes").value = stringSizes;
         }
 
         function changeResult() {
@@ -42,7 +58,7 @@
             }
             details.sizes = stringSizes;
             alert("clicked");
-          
+
         }
         function fillReturnedData() {
             if (document.getElementById("id_catgory").value != 1)
@@ -72,6 +88,7 @@
         function loadFile() {
             changeCatgory();
             fillReturnedData();
+            getLocation();
         }
 
     </script>
@@ -97,11 +114,10 @@
 
     <link rel="shortcut icon" type="image/png" href="~/images/favicon.ico" />
 </head>
-<body dir="rtl" onload="loadFile()">
 
-    @*<div class="page-loading">
-            <div class="loadery"></div>
-        </div>*@
+
+<body dir="rtl" onload="loadFile()">
+   
     <div class="theme-layout">
 
 
@@ -367,16 +383,18 @@
                                         InsertionMode = InsertionMode.Replace,
                                     }))
                                     {
+                                        <input type="hidden" id="lat" name="lat" />
+                                        <input type="hidden" id="lng" name="lng" />
                                         <h3 class="mini-title">סנן לפי:</h3>
-                                    
+
                                         <div class="search_widget">
                                             <div class="side-search-form">
 
 
                                                 <div class="row">
                                                     <div class="col-md-12" style="height:70px">
-                                                            <input type="date" class="input-style" name="date" required />
-                                                        </div>
+                                                        <input type="date" class="input-style" name="date" required />
+                                                    </div>
                                                     <div class="col-md-12" style="height:70px">
                                                         <span>קטגוריה</span>
                                                         @Html.DropDownList("id_catgory", null, htmlAttributes: new { @class = "chosen-select", @name = "id_catgory", @id = "id_catgory", @onchange = "changeCatgory()" })

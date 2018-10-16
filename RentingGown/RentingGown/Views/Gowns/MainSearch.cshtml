@@ -2,45 +2,69 @@
 @{
     ViewBag.Title = "MainSearch";
 }
-<script>
-    showGown(gown){
 
-    }
-</script>
 <h2>@Model.Count תוצאות נמצאו</h2>
 
+
 @{
-    foreach (RentingGown.Models.Gowns item in Model)
+    Dictionary<int, dynamic> distances = new Dictionary<int, dynamic>();
+
+    if (Session["lat"] != null && Session["lng"] != null)
     {
+        string currentLat = Session["lat"].ToString();
+        string currentLng = Session["lng"].ToString();
 
-        <div class="col-md-4 col-sm-6 col-xs-12">
-            <div class="listing-box">
-                <a href="/Gowns/showGown/@item.id_gown">
-                    <div class="listing-box-thumb">
-                        <span class="price-list">@item.price</span>
-                        <img src="~/Images/@item.picture" alt="" />
-                        <div class="listing-box-title">
-                            @*<h3><a href="#" title=""></a></h3>*@
-                            <span>Los Angeles /  Sillicon Valley </span>
-                            <span>@item.size</span>
-                        </div>
-                    </div>
-                    <div class="listing-rate-share">
-                        <div class="rated-list">
-                            <b class="la la-star"></b>
-                            <b class="la la-star"></b>
-                            <b class="la la-star"></b>
-                            <b class="la la-star-o"></b>
-                            <b class="la la-star-o"></b>
-                            <span>(13)</span>
-                        </div>
-                        <span><i class="la la-share-alt"></i></span>
-                        @* <a href="#" title=""><i class="la la-heart-o"></i></a>*@
-                    </div>
-                </a>
-            </div>
-        </div>
+        foreach (RentingGown.Models.Gowns item in Model)
+        {
 
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create($@"https://maps.googleapis.com/maps/api/distancematrix/json?origins={item.Renters.address}&destinations={currentLat},{currentLng}&key=AIzaSyDjo2Qe6DhOmWvJ8yO7-PzFjTuZ_8zSPCk");
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            string content = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            dynamic json = Newtonsoft.Json.JsonConvert.DeserializeObject(content);
+            distances.Add(item.id_gown, json);
+        }
+        List<KeyValuePair<int, dynamic>> myList = distances.ToList();
+
+        myList.Sort(
+    delegate (KeyValuePair<int, dynamic> pair1, KeyValuePair<int, dynamic> pair2)
+    {
+        return pair1.Value["rows"][0]["elements"][0]["distance"]["value"].CompareTo(pair2.Value["rows"][0]["elements"][0]["distance"]["value"]);
     }
+);
+        foreach (KeyValuePair<int, dynamic> details in myList)
+        {
+            RentingGown.Models.Gowns item = Model.Find(p => p.id_gown == details.Key);
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="listing-box">
+                    <a href="/Gowns/showGown/@item.id_gown">
+                        <div class="listing-box-thumb">
+                            <span class="price-list">@item.price</span>
+                            <img src="~/Images/@item.picture" alt="" />
+                            <div class="listing-box-title">
+                                @*<h3><a href="#" title=""></a></h3>*@
+                                <span dir="ltr">@details.Value["rows"][0]["elements"][0]["distance"]["text"]</span>
+                                <span dir="ltr">@details.Value["rows"][0]["elements"][0]["duration"]["text"]</span>
+                                <span>@item.size</span>
+                            </div>
+                        </div>
+                        <div class="listing-rate-share">
+                            <div class="rated-list">
+                                <b class="la la-star"></b>
+                                <b class="la la-star"></b>
+                                <b class="la la-star"></b>
+                                <b class="la la-star-o"></b>
+                                <b class="la la-star-o"></b>
+                                <span>(13)</span>
+                            </div>
+                            <span><i class="la la-share-alt"></i></span>
+                            @* <a href="#" title=""><i class="la la-heart-o"></i></a>*@
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    }
+
+
 }
 

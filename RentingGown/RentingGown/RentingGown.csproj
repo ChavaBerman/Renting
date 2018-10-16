@@ -161,6 +161,7 @@
     <Compile Include="Controllers\RentersController.cs" />
     <Compile Include="Controllers\RentsController.cs" />
     <Compile Include="Controllers\ShowGownsController.cs" />
+    <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Controllers\TenantsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -399,6 +400,8 @@
     <Content Include="Views\Rents\Edit.cshtml" />
     <Content Include="Views\Rents\Index.cshtml" />
     <Content Include="Views\Manager\ShowRents.cshtml" />
+    <Content Include="Views\Statistics\Statistics.cshtml" />
+    <Content Include="Views\Statistics\ByColor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\images\resource\" />

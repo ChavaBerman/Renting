@@ -48,8 +48,10 @@ namespace RentingGown.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult MainSearch( DateTime? date, int? id_catgory, int? id_season, int? price, string stringSizes, string is_long, string is_light, int? color)
+        public ActionResult MainSearch(double? lat,double? lng, DateTime date, int? id_catgory, int? id_season, int? price, string stringSizes, string is_long, string is_light, int? color)
         {
+            Session["lat"] = lat;
+            Session["lng"] = lng;
             SearchDetails searchDetails = new SearchDetails() { color = color, id_catgory = id_catgory, id_season = id_season, is_light = is_light, is_long = is_long, price = price, stringSizes = stringSizes };
             if (Session["searchDetails"] == null)
             {
@@ -61,6 +63,7 @@ namespace RentingGown.Controllers
             List<Gowns> listAfterCheckLight = new List<Gowns>();
             List<Gowns> listAfterCheckLong = new List<Gowns>();
             List<Gowns> listAfterCheckColor = new List<Gowns>();
+            List<Gowns> listAfterCheckDate = new List<Gowns>();
             List<Gowns> MainSearchResult = db.Gowns.Where(p => p.id_catgory == id_catgory && p.id_season == id_season && p.price < price + 50 && p.price > price - 50 && p.is_available == true).ToList();
             List<Gowns> myList = new List<Gowns>();
             //filter by sizes
@@ -109,7 +112,22 @@ namespace RentingGown.Controllers
                 }
                 myList = listAfterCheckColor;
             }
-            return PartialView(myList);
+
+            foreach (Gowns gown in myList)
+            {
+                bool isAvailable = true;
+                foreach (Rents rent in db.Rents)
+                {
+                   TimeSpan t1=rent.date.Subtract(date);
+                   TimeSpan t2=date.Subtract(rent.date);
+                    if (gown.id_gown == rent.id_gown && (t1.TotalDays < 10&&t1.TotalDays>=0|| t2.TotalDays < 10 && t2.TotalDays >= 0))
+                        isAvailable = false;
+
+                }
+                if (isAvailable == true)
+                    listAfterCheckDate.Add(gown);
+            }
+            return PartialView(listAfterCheckDate);
         }
 
         public ActionResult showGown(int id)

@@ -1,0 +1,11 @@
+﻿@{
+    
+    var myChart = new Chart(width: 600, height: 400)
+        .AddTitle("התפלגות הצבעים")
+        .AddSeries(
+        name: "Color",
+        xValue: ViewBag.colors.Keys,
+        yValues: ViewBag.colors.Values
+        ).Write();
+}
+
