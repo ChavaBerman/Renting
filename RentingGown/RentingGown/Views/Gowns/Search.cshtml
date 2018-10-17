@@ -5,15 +5,31 @@
 }
 
 <head>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjo2Qe6DhOmWvJ8yO7-PzFjTuZ_8zSPCk&callback=initMap">
+    </script>
     <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    console.log(pos["lat"]);
+                    console.log(pos["lng"]);
+                    document.getElementById("lat").value = pos["lat"];
+                    document.getElementById("lng").value = pos["lng"];
+                })
+            }
+        }
         var listOfSizes;
-       function createStringSizes(){
+        function createStringSizes() {
             var stringSizes = "";
             for (let size of listOfSizes) {
                 if (document.getElementById(size).checked)
                     stringSizes += size + " ";
-           }
-           document.getElementById("stringSizes").value = stringSizes;
+            }
+            document.getElementById("stringSizes").value = stringSizes;
         }
 
         function changeResult() {
@@ -42,11 +58,12 @@
             }
             details.sizes = stringSizes;
             alert("clicked");
-          
+
         }
         function fillReturnedData() {
             if (document.getElementById("id_catgory").value != 1)
-                document.getElementById("mainSearchbtn").click();
+                setTimeout(function () { document.getElementById("mainSearchbtn").click(); }, 10);
+              
         }
         function changeCatgory() {
 
@@ -72,6 +89,7 @@
         function loadFile() {
             changeCatgory();
             fillReturnedData();
+            getLocation();
         }
 
     </script>
@@ -97,11 +115,10 @@
 
     <link rel="shortcut icon" type="image/png" href="~/images/favicon.ico" />
 </head>
-<body dir="rtl" onload="loadFile()">
 
-    @*<div class="page-loading">
-            <div class="loadery"></div>
-        </div>*@
+
+<body dir="rtl" onload="loadFile()">
+   
     <div class="theme-layout">
 
 
@@ -124,237 +141,10 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-9 column">
-
-                            <div class="grids-listings">
-                                <div class="row" id="SearchContent">
-                                    <div class="col-md-4 col-sm-6 col-xs-12">
-                                        <div class="listing-box">
-                                            <div class="listing-box-thumb">
-                                                <span class="price-list">$149.90</span>
-                                                <img src="http://placehold.it/263x235" alt="" />
-                                                <div class="listing-box-title">
-                                                    <h3><a href="#" title="">Coffee Parade</a></h3>
-                                                    <span>Los Angeles /  Sillicon Valley </span>
-                                                    <span>(416) 551-0589</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-rate-share">
-                                                <div class="rated-list">
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star-o"></b>
-                                                    <b class="la la-star-o"></b>
-                                                    <span>(13)</span>
-                                                </div>
-                                                <span><i class="la la-share-alt"></i></span>
-                                                <a href="#" title=""><i class="la la-heart-o"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6 col-xs-12">
-                                        <div class="listing-box">
-                                            <div class="listing-box-thumb">
-                                                <span class="price-list">$149.90</span>
-                                                <img src="http://placehold.it/263x235" alt="" />
-                                                <div class="listing-box-title">
-                                                    <h3><a href="#" title="">Evin Electroni</a></h3>
-                                                    <span>Los Angeles /  Sillicon Valley </span>
-                                                    <span>(416) 551-0589</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-rate-share">
-                                                <div class="rated-list">
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star-o"></b>
-                                                    <b class="la la-star-o"></b>
-                                                    <span>(13)</span>
-                                                </div>
-                                                <span><i class="la la-share-alt"></i></span>
-                                                <a href="#" title=""><i class="la la-heart-o"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6 col-xs-12">
-                                        <div class="listing-box">
-                                            <div class="listing-box-thumb">
-                                                <span class="price-list">$149.90</span>
-                                                <img src="http://placehold.it/263x235" alt="" />
-                                                <div class="listing-box-title">
-                                                    <h3><a href="#" title="">Baloon City Excursion</a></h3>
-                                                    <span>Los Angeles /  Sillicon Valley </span>
-                                                    <span>(416) 551-0589</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-rate-share">
-                                                <div class="rated-list">
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star-o"></b>
-                                                    <b class="la la-star-o"></b>
-                                                    <span>(13)</span>
-                                                </div>
-                                                <span><i class="la la-share-alt"></i></span>
-                                                <a href="#" title=""><i class="la la-heart-o"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6 col-xs-12">
-                                        <div class="listing-box">
-                                            <div class="listing-box-thumb">
-                                                <span class="price-list">$149.90</span>
-                                                <img src="http://placehold.it/263x235" alt="" />
-                                                <div class="listing-box-title">
-                                                    <h3><a href="#" title="">Extreme Sport</a></h3>
-                                                    <span>Los Angeles /  Sillicon Valley </span>
-                                                    <span>(416) 551-0589</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-rate-share">
-                                                <div class="rated-list">
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star-o"></b>
-                                                    <b class="la la-star-o"></b>
-                                                    <span>(13)</span>
-                                                </div>
-                                                <span><i class="la la-share-alt"></i></span>
-                                                <a href="#" title=""><i class="la la-heart-o"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6 col-xs-12">
-                                        <div class="listing-box">
-                                            <div class="listing-box-thumb">
-                                                <span class="price-list">$149.90</span>
-                                                <img src="http://placehold.it/263x235" alt="" />
-                                                <div class="listing-box-title">
-                                                    <h3><a href="#" title="">Food Seminar</a></h3>
-                                                    <span>Los Angeles /  Sillicon Valley </span>
-                                                    <span>(416) 551-0589</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-rate-share">
-                                                <div class="rated-list">
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star-o"></b>
-                                                    <b class="la la-star-o"></b>
-                                                    <span>(13)</span>
-                                                </div>
-                                                <span><i class="la la-share-alt"></i></span>
-                                                <a href="#" title=""><i class="la la-heart-o"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6 col-xs-12">
-                                        <div class="listing-box">
-                                            <div class="listing-box-thumb">
-                                                <span class="price-list">$149.90</span>
-                                                <img src="http://placehold.it/263x235" alt="" />
-                                                <div class="listing-box-title">
-                                                    <h3><a href="#" title="">Evin Electroni</a></h3>
-                                                    <span>Los Angeles /  Sillicon Valley </span>
-                                                    <span>(416) 551-0589</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-rate-share">
-                                                <div class="rated-list">
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star-o"></b>
-                                                    <b class="la la-star-o"></b>
-                                                    <span>(13)</span>
-                                                </div>
-                                                <span><i class="la la-share-alt"></i></span>
-                                                <a href="#" title=""><i class="la la-heart-o"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6 col-xs-12">
-                                        <div class="listing-box">
-                                            <div class="listing-box-thumb">
-                                                <span class="price-list">$149.90</span>
-                                                <img src="http://placehold.it/263x235" alt="" />
-                                                <div class="listing-box-title">
-                                                    <h3><a href="#" title="">Baloon City Excursion</a></h3>
-                                                    <span>Los Angeles /  Sillicon Valley </span>
-                                                    <span>(416) 551-0589</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-rate-share">
-                                                <div class="rated-list">
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star-o"></b>
-                                                    <b class="la la-star-o"></b>
-                                                    <span>(13)</span>
-                                                </div>
-                                                <span><i class="la la-share-alt"></i></span>
-                                                <a href="#" title=""><i class="la la-heart-o"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6 col-xs-12">
-                                        <div class="listing-box">
-                                            <div class="listing-box-thumb">
-                                                <span class="price-list">$149.90</span>
-                                                <img src="http://placehold.it/263x235" alt="" />
-                                                <div class="listing-box-title">
-                                                    <h3><a href="#" title="">Extreme Sport</a></h3>
-                                                    <span>Los Angeles /  Sillicon Valley </span>
-                                                    <span>(416) 551-0589</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-rate-share">
-                                                <div class="rated-list">
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star-o"></b>
-                                                    <b class="la la-star-o"></b>
-                                                    <span>(13)</span>
-                                                </div>
-                                                <span><i class="la la-share-alt"></i></span>
-                                                <a href="#" title=""><i class="la la-heart-o"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6 col-xs-12">
-                                        <div class="listing-box">
-                                            <div class="listing-box-thumb">
-                                                <span class="price-list">$149.90</span>
-                                                <img src="http://placehold.it/263x235" alt="" />
-                                                <div class="listing-box-title">
-                                                    <h3><a href="#" title="">Gitar Course</a></h3>
-                                                    <span>Los Angeles /  Sillicon Valley </span>
-                                                    <span>(416) 551-0589</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-rate-share">
-                                                <div class="rated-list">
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star"></b>
-                                                    <b class="la la-star-o"></b>
-                                                    <b class="la la-star-o"></b>
-                                                    <span>(13)</span>
-                                                </div>
-                                                <span><i class="la la-share-alt"></i></span>
-                                                <a href="#" title=""><i class="la la-heart-o"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div id="SearchContent">
+                                <h2>כאן יוצגו תוצאות החיפוש שלך.</h2>
+                                <h3>בחר/י את הפרמטרים המתאימים לך ובצע/י חיפוש.</h3>
                             </div>
-
                         </div>
                         <aside class="col-md-3 column">
                             <div class="widget">
@@ -367,16 +157,18 @@
                                         InsertionMode = InsertionMode.Replace,
                                     }))
                                     {
+                                        <input type="hidden" id="lat" name="lat" />
+                                        <input type="hidden" id="lng" name="lng" />
                                         <h3 class="mini-title">סנן לפי:</h3>
-                                    
+
                                         <div class="search_widget">
                                             <div class="side-search-form">
 
 
                                                 <div class="row">
                                                     <div class="col-md-12" style="height:70px">
-                                                            <input type="date" class="input-style" name="date" required />
-                                                        </div>
+                                                        <input type="date" class="input-style" name="date" required value="@{@ViewBag.date}"/>
+                                                    </div>
                                                     <div class="col-md-12" style="height:70px">
                                                         <span>קטגוריה</span>
                                                         @Html.DropDownList("id_catgory", null, htmlAttributes: new { @class = "chosen-select", @name = "id_catgory", @id = "id_catgory", @onchange = "changeCatgory()" })

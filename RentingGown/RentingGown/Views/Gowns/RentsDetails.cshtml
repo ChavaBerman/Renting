@@ -1,0 +1,36 @@
+﻿@model List<RentingGown.Models.Renters>
+<script>
+    function Print() {
+        window.print();
+    }
+</script>
+<div style="margin-top:10%">
+    @{if (Session["listOfGowns"] != null)
+        {
+            int i = 0;
+            foreach (RentingGown.Models.Gowns item in (List<RentingGown.Models.Gowns>)Session["listOfGowns"])
+            {
+                RentingGown.Models.Renters Renter = Model[i++];
+
+                <div class="form-group">
+                    <img src="~/Images/@item.picture" style="float:right;height:350px;" />
+                    <label class="control-label labels">שם פרטי</label>
+                    <p class="p-details">@Renter.fname</p>
+                    <label class="control-label labels">שם משפחה</label>
+                    <p class="p-details">@Renter.lname</p>
+                    <label class="control-label labels">טלפון</label>
+                    <p class="p-details">@Renter.phone</p>
+                    <label class="control-label labels">סלולארי</label>
+                    <p class="p-details">@Renter.cellphone</p>
+                    <label class="control-label labels">כתובת</label>
+                    <p class="p-details">@Renter.address</p>
+                    <label class="control-label labels">עיר</label>
+                    <p class="p-details">@Renter.city</p>
+                </div>
+            }
+        }
+    }
+</div>
+<div>
+    <a class="filter-btn" style="width: 30%;" onclick="Print()">הדפס</a>
+</div>

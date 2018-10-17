@@ -27,10 +27,9 @@ namespace RentingGown.Models
         public string cellphone { get; set; }
         public string city { get; set; }
         public string address { get; set; }
-        public Nullable<int> id_area { get; set; }
         public Nullable<int> password { get; set; }
+        public Nullable<bool> is_active { get; set; }
     
-        public virtual Areas Areas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Gowns> Gowns { get; set; }
     }

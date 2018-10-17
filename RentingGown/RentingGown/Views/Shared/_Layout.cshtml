@@ -8,15 +8,6 @@
     <script src="~/Scripts/jquery-1.8.2.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <link href="~/Content/StyleSheet.css" rel="stylesheet" />
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    <script>
-        function closeLogin() {
-            document.getElementById("password").value = "";
-            document.getElementById("name").value = "";
-            document.getElementById("close").click();
-        }
-    </script>
 </head>
 <body dir="rtl" style="font-family:Calibri">
     
@@ -29,11 +20,12 @@
                 @Html.ActionLink("הרשמה", "Register", "User", new { }, new { @class = "navbar-brand" })
                 @Html.ActionLink("כניסה", "Login", "User", new { }, new { @class = "navbar-brand" })
                 @Html.ActionLink("חיפוש שמלה", "Search", "Gowns", new { }, new { @class = "navbar-brand" })
+                @Html.ActionLink("statistics", "Statistics", "Statistics", new { }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse" style=" margin-right: 6%;">
                 <div class="acount-header-btn">
-                    <span><a href="/User/Login">Sign IN</a></span>
-                    <span><a href="/User/Register">Register</a></span>
+                    <span style="color: white;"><a href="/User/Login">Sign IN</a></span>
+                    <span style="color: white;"><a href="/User/Register">Register</a></span>
                 </div>
                 <ul class="nav navbar-nav"></ul>
             </div>

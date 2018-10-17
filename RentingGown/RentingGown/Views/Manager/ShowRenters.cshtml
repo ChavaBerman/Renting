@@ -5,26 +5,53 @@
 }
 
 <h2>Index</h2>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="~/Scripts/sweetalert.min.js"></script>
+<script>
+    function deleteRenter(id) {
+        swal({
+            title: 'האם אתה בטוח שברצונך למחוק משכיר זה?',
+            text: "לא תוכל לשחזר את המידע!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'כן, מחק!'
+        }).then((result) => {
+            if (result) {
+                $.ajax({
+                    url: "/Manager/DeleteRenter",
+                    data: { id: id },
+                    success: function () {
+                        location.reload();
+                    }
 
+
+                });
+
+            }
+        })
+    }
+</script>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
-        
+
         <th>
-           שם פרטי
+            שם פרטי
         </th>
         <th>
-           שם משפחה
+            שם משפחה
         </th>
         <th>
             טלפון
         </th>
         <th>
-           סלולארי
+            סלולארי
         </th>
-       
+
         <th>
             כתובת
         </th>
@@ -51,7 +78,7 @@
             </td>
             <td>
                 @Html.ActionLink("ערוך", "EditRenter", new { id = item.id_renter }) |
-                @Html.ActionLink("מחק", "Delete", new { id = item.id_renter })
+                <a onclick="deleteRenter(@item.id_renter)">מחיקה</a>
             </td>
         </tr>
     }

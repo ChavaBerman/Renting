@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="270c254ea51943fe8a9df93b318cbaf4" Name="Diagram1">
-        <EntityTypeShape EntityType="RentingGownModel.Areas" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RentingGownModel.Catgories" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
         <EntityTypeShape EntityType="RentingGownModel.Colors" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="RentingGownModel.Gowns" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
@@ -13,8 +12,6 @@
         <EntityTypeShape EntityType="RentingGownModel.Seasons" Width="1.5" PointX="3" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RentingGownModel.Sets" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
         <EntityTypeShape EntityType="RentingGownModel.Tenants" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
-        <AssociationConnector Association="RentingGownModel.FK__Renters__id_area__25869641" ManuallyRouted="false" />
-        <AssociationConnector Association="RentingGownModel.FK__Tenants__id_area__267ABA7A" ManuallyRouted="false" />
         <AssociationConnector Association="RentingGownModel.FK__Gowns__id_catgor__0DAF0CB0" ManuallyRouted="false" />
         <AssociationConnector Association="RentingGownModel.FK__Gowns__color__182C9B23" ManuallyRouted="false" />
         <AssociationConnector Association="RentingGownModel.FK__Gowns__id_renter__0EA330E9" ManuallyRouted="false" />

@@ -161,13 +161,11 @@
     <Compile Include="Controllers\RentersController.cs" />
     <Compile Include="Controllers\RentsController.cs" />
     <Compile Include="Controllers\ShowGownsController.cs" />
+    <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Controllers\TenantsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Areas.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Catgories.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -225,6 +223,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min %282%29.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\checkout.css" />
     <Content Include="Content\colors\colors.css" />
     <Content Include="Content\fonts\line-awesome.svg" />
     <Content Include="Content\fonts\slick.svg" />
@@ -399,6 +398,10 @@
     <Content Include="Views\Rents\Edit.cshtml" />
     <Content Include="Views\Rents\Index.cshtml" />
     <Content Include="Views\Manager\ShowRents.cshtml" />
+    <Content Include="Views\Statistics\Statistics.cshtml" />
+    <Content Include="Views\Statistics\ByColor.cshtml" />
+    <Content Include="Views\Gowns\Checkout.cshtml" />
+    <Content Include="Views\Gowns\RentsDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\images\resource\" />

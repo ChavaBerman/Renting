@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="RentingGownModelStoreContainer" CdmEntityContainer="RentingGownDB">
-    <EntitySetMapping Name="Areas">
-      <EntityTypeMapping TypeName="RentingGownModel.Areas">
-        <MappingFragment StoreEntitySet="Areas">
-          <ScalarProperty Name="id_area" ColumnName="id_area" />
-          <ScalarProperty Name="area" ColumnName="area" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Catgories">
       <EntityTypeMapping TypeName="RentingGownModel.Catgories">
         <MappingFragment StoreEntitySet="Catgories">
@@ -46,6 +38,7 @@
     <EntitySetMapping Name="Renters">
       <EntityTypeMapping TypeName="RentingGownModel.Renters">
         <MappingFragment StoreEntitySet="Renters">
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
           <ScalarProperty Name="id_renter" ColumnName="id_renter" />
           <ScalarProperty Name="fname" ColumnName="fname" />
           <ScalarProperty Name="lname" ColumnName="lname" />
@@ -53,7 +46,6 @@
           <ScalarProperty Name="cellphone" ColumnName="cellphone" />
           <ScalarProperty Name="city" ColumnName="city" />
           <ScalarProperty Name="address" ColumnName="address" />
-          <ScalarProperty Name="id_area" ColumnName="id_area" />
           <ScalarProperty Name="password" ColumnName="password" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -84,7 +76,6 @@
           <ScalarProperty Name="phone" ColumnName="phone" />
           <ScalarProperty Name="cellphone" ColumnName="cellphone" />
           <ScalarProperty Name="address" ColumnName="address" />
-          <ScalarProperty Name="id_area" ColumnName="id_area" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

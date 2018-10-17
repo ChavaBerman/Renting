@@ -1,12 +1,13 @@
 ﻿@model List<RentingGown.Models.Rents>
 
 @{
-    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Manager.cshtml";
 }
+
 
 <h2>מאגר ההשכרות</h2>
 
-<table class="table">
+<table class="table" style="margin-top:5%">
     <tr>
         <th>
             תשלום
@@ -26,7 +27,7 @@
         <th>
             שמלה
         </th>
-      
+
     </tr>
 
     @foreach (var item in Model)
@@ -64,11 +65,8 @@
             <td>
                 <img src="~/Images/@Html.DisplayFor(modelItem => item.Gowns.picture)" style="    width: 12%;" />
             </td>
-          
-            <td>
-                @Html.ActionLink("ערוך", "Edit", new { id = item.id }) |
-                @Html.ActionLink("מחק", "Details", new { id = item.id }) 
-            </td>
+
+            
         </tr>
     }
 
