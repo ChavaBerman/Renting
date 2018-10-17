@@ -67,7 +67,7 @@ public ActionResult Register(string fname, string lname, string phone, string ce
     Users user = db.Users.FirstOrDefault(p => p.password == password && p.username == username);
     if (user != null)
         return RedirectToAction("Register", new { error = 1 });
-    Renters renter = new Renters() { fname = fname, lname = lname, phone = phone, cellphone = cellphone, address = address };
+    Renters renter = new Renters() { fname = fname, lname = lname, phone = phone, cellphone = cellphone, address = address,is_active=true };
     db.Renters.Add(renter);
     db.SaveChanges();
     renter = db.Renters.FirstOrDefault(p => p.fname == fname && p.lname == lname && p.phone == phone && p.cellphone == cellphone && p.address == address);

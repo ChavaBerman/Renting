@@ -167,9 +167,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Areas.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Catgories.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -404,6 +401,7 @@
     <Content Include="Views\Statistics\Statistics.cshtml" />
     <Content Include="Views\Statistics\ByColor.cshtml" />
     <Content Include="Views\Gowns\Checkout.cshtml" />
+    <Content Include="Views\Gowns\RentsDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\images\resource\" />

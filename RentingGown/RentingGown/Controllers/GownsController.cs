@@ -10,6 +10,19 @@ using RentingGown.Models;
 
 namespace RentingGown.Controllers
 {
+
+    public class SearchDetails
+    {
+        public string stringSizes { get; set; }
+        public string is_long { get; set; }
+        public string is_light { get; set; }
+        public int? color { get; set; }
+        public int? id_catgory { get; set; }
+        public int? id_season { get; set; }
+        public int? price { get; set; }
+        public DateTime date { get; set; }
+
+    }
     public class GownsController : Controller
     {
 
@@ -50,11 +63,11 @@ namespace RentingGown.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult MainSearch(double? lat,double? lng, DateTime date, int? id_catgory, int? id_season, int? price, string stringSizes, string is_long, string is_light, int? color)
+        public ActionResult MainSearch(double? lat, double? lng, DateTime date, int? id_catgory, int? id_season, int? price, string stringSizes, string is_long, string is_light, int? color)
         {
             Session["lat"] = lat;
             Session["lng"] = lng;
-            SearchDetails searchDetails = new SearchDetails() { color = color, id_catgory = id_catgory, id_season = id_season, is_light = is_light, is_long = is_long, price = price, stringSizes = stringSizes,date=date };
+            SearchDetails searchDetails = new SearchDetails() { color = color, id_catgory = id_catgory, id_season = id_season, is_light = is_light, is_long = is_long, price = price, stringSizes = stringSizes, date = date };
             if (Session["searchDetails"] == null)
             {
                 Session["searchDetails"] = new SearchDetails();
@@ -120,9 +133,9 @@ namespace RentingGown.Controllers
                 bool isAvailable = true;
                 foreach (Rents rent in db.Rents)
                 {
-                   TimeSpan t1=rent.date.Subtract(date);
-                   TimeSpan t2=date.Subtract(rent.date);
-                    if (gown.id_gown == rent.id_gown && (t1.TotalDays < 10&&t1.TotalDays>=0|| t2.TotalDays < 10 && t2.TotalDays >= 0))
+                    TimeSpan t1 = rent.date.Subtract(date);
+                    TimeSpan t2 = date.Subtract(rent.date);
+                    if (gown.id_gown == rent.id_gown && (t1.TotalDays < 10 && t1.TotalDays >= 0 || t2.TotalDays < 10 && t2.TotalDays >= 0))
                         isAvailable = false;
 
                 }
@@ -313,10 +326,31 @@ namespace RentingGown.Controllers
             }
             base.Dispose(disposing);
         }
-
+        [HttpGet]
         public ActionResult Checkout()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult Checkout(string name, string phone, string address)
+        {
+            Tenants tenant = new Tenants { fname = name, phone = phone, address = address };
+            db.Tenants.Add(tenant);
+            db.SaveChanges();
+
+            List<Renters> renters = new List<Renters>();
+            foreach (Gowns gown in (Session["listOfGowns"] as List<Gowns>))
+            {
+                Tenants currentTenant = db.Tenants.FirstOrDefault(p => p.fname == name && p.phone == phone && p.address == address);
+                Rents newRent = new Rents() { id_gown = gown.id_gown, id_tenant = currentTenant.id_tenant, payment = gown.price };
+                if (Session["searchDetails"] != null)
+                    newRent.date = ((SearchDetails)Session["searchDetails"]).date;
+                db.Rents.Add(newRent);
+
+                renters.Add(db.Renters.FirstOrDefault(p => p.id_renter == gown.id_renter));
+            }
+            db.SaveChanges();
+            return View("RentsDetails", renters);
         }
     }
 }

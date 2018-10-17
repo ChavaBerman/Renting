@@ -19,12 +19,14 @@ namespace RentingGown.Controllers
         }
         public ActionResult ShowRenters()
         {
-            List<Renters> renters = db.Renters.ToList() ;
+            List<Renters> renters = new List<Renters>();
+            renters=db.Renters.Where(p=>p.is_active!=false).ToList() ;
             return View(renters);
         }
         public ActionResult ShowGowns()
         {
-            List<Gowns> gowns = db.Gowns.ToList();
+            List<Gowns> gowns = new List<Gowns>();
+              gowns=  db.Gowns.Where(p=>p.is_available==true).ToList();
             return View(gowns);
         }
         public ActionResult EditGown(int? id)
@@ -67,7 +69,7 @@ namespace RentingGown.Controllers
             }
             db.SaveChanges();
 
-            return RedirectToAction("Renter");
+            return RedirectToAction("ShowGowns");
         }
         public ActionResult EditRenter(int? id)
         {
@@ -91,6 +93,23 @@ namespace RentingGown.Controllers
         {
             List<Rents> rents = db.Rents.ToList();
             return View(rents);
+        }
+
+        public ActionResult DeleteGown(int? id)
+        {
+            Gowns gown = db.Gowns.FirstOrDefault(p => p.id_gown == id);
+            if (gown != null)
+                gown.is_available = false;
+            db.SaveChanges();
+            return RedirectToAction("ShowGowns");
+        }
+        public ActionResult DeleteRenter(int? id)
+        {
+            Renters renter = db.Renters.FirstOrDefault(p => p.id_renter == id);
+            if (renter != null)
+                renter.is_active = false;
+            db.SaveChanges();
+            return RedirectToAction("ShowRenters");
         }
     }
 }

@@ -1,12 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="RentingGownModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Areas">
-    <Key>
-      <PropertyRef Name="id_area" />
-    </Key>
-    <Property Name="id_area" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="area" Type="nvarchar" MaxLength="50" />
-  </EntityType>
   <EntityType Name="Catgories">
     <Key>
       <PropertyRef Name="id_catgory" />
@@ -49,8 +42,8 @@
     <Property Name="cellphone" Type="nvarchar" MaxLength="50" />
     <Property Name="city" Type="nvarchar" MaxLength="50" />
     <Property Name="address" Type="nvarchar" MaxLength="50" />
-    <Property Name="id_area" Type="int" />
     <Property Name="password" Type="int" />
+    <Property Name="is_active" Type="bit" />
   </EntityType>
   <EntityType Name="Rents">
     <Key>
@@ -96,7 +89,6 @@
     <Property Name="phone" Type="nvarchar" MaxLength="50" />
     <Property Name="cellphone" Type="nvarchar" MaxLength="50" />
     <Property Name="address" Type="nvarchar" MaxLength="50" />
-    <Property Name="id_area" Type="int" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -181,30 +173,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Renters__id_area__25869641">
-    <End Role="Areas" Type="Self.Areas" Multiplicity="0..1" />
-    <End Role="Renters" Type="Self.Renters" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Areas">
-        <PropertyRef Name="id_area" />
-      </Principal>
-      <Dependent Role="Renters">
-        <PropertyRef Name="id_area" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Tenants__id_area__267ABA7A">
-    <End Role="Areas" Type="Self.Areas" Multiplicity="0..1" />
-    <End Role="Tenants" Type="Self.Tenants" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Areas">
-        <PropertyRef Name="id_area" />
-      </Principal>
-      <Dependent Role="Tenants">
-        <PropertyRef Name="id_area" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__Tenants-s__id_go__15502E78">
     <End Role="Gowns" Type="Self.Gowns" Multiplicity="1" />
     <End Role="Rents" Type="Self.Rents" Multiplicity="*" />
@@ -254,7 +222,6 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="RentingGownModelStoreContainer">
-    <EntitySet Name="Areas" EntityType="Self.Areas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Catgories" EntityType="Self.Catgories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Colors" EntityType="Self.Colors" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Gowns" EntityType="Self.Gowns" Schema="dbo" store:Type="Tables" />
@@ -288,14 +255,6 @@
     <AssociationSet Name="FK__Gowns__id_set__117F9D94" Association="Self.FK__Gowns__id_set__117F9D94">
       <End Role="Sets" EntitySet="Sets" />
       <End Role="Gowns" EntitySet="Gowns" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Renters__id_area__25869641" Association="Self.FK__Renters__id_area__25869641">
-      <End Role="Areas" EntitySet="Areas" />
-      <End Role="Renters" EntitySet="Renters" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Tenants__id_area__267ABA7A" Association="Self.FK__Tenants__id_area__267ABA7A">
-      <End Role="Areas" EntitySet="Areas" />
-      <End Role="Tenants" EntitySet="Tenants" />
     </AssociationSet>
     <AssociationSet Name="FK__Tenants-s__id_go__15502E78" Association="Self.FK__Tenants-s__id_go__15502E78">
       <End Role="Gowns" EntitySet="Gowns" />

@@ -25,7 +25,6 @@ namespace RentingGown.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Areas> Areas { get; set; }
         public virtual DbSet<Catgories> Catgories { get; set; }
         public virtual DbSet<Colors> Colors { get; set; }
         public virtual DbSet<Gowns> Gowns { get; set; }

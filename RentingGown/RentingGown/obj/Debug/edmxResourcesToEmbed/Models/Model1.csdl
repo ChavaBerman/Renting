@@ -1,14 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="RentingGownModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="Areas">
-    <Key>
-      <PropertyRef Name="id_area" />
-    </Key>
-    <Property Name="id_area" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="area" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Renters" Relationship="Self.FK__Renters__id_area__25869641" FromRole="Areas" ToRole="Renters" />
-    <NavigationProperty Name="Tenants" Relationship="Self.FK__Tenants__id_area__267ABA7A" FromRole="Areas" ToRole="Tenants" />
-  </EntityType>
   <EntityType Name="Catgories">
     <Key>
       <PropertyRef Name="id_catgory" />
@@ -61,10 +52,9 @@
     <Property Name="cellphone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="id_area" Type="Int32" />
     <Property Name="password" Type="Int32" />
-    <NavigationProperty Name="Areas" Relationship="Self.FK__Renters__id_area__25869641" FromRole="Renters" ToRole="Areas" />
     <NavigationProperty Name="Gowns" Relationship="Self.FK__Gowns__id_renter__0EA330E9" FromRole="Renters" ToRole="Gowns" />
+    <Property Name="is_active" Type="Boolean" />
   </EntityType>
   <EntityType Name="Seasons">
     <Key>
@@ -94,35 +84,9 @@
     <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="cellphone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="id_area" Type="Int32" />
-    <NavigationProperty Name="Areas" Relationship="Self.FK__Tenants__id_area__267ABA7A" FromRole="Tenants" ToRole="Areas" />
     <NavigationProperty Name="Rents" Relationship="RentingGownModel.FK__Tenants_s__id_te__1367E6061" FromRole="Tenants" ToRole="Rents" />
     <NavigationProperty Name="Rents1" Relationship="RentingGownModel.FK__Tenants_s__id_te__36B122431" FromRole="Tenants" ToRole="Rents" />
   </EntityType>
-  <Association Name="FK__Renters__id_area__25869641">
-    <End Role="Areas" Type="Self.Areas" Multiplicity="0..1" />
-    <End Role="Renters" Type="Self.Renters" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Areas">
-        <PropertyRef Name="id_area" />
-      </Principal>
-      <Dependent Role="Renters">
-        <PropertyRef Name="id_area" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Tenants__id_area__267ABA7A">
-    <End Role="Areas" Type="Self.Areas" Multiplicity="0..1" />
-    <End Role="Tenants" Type="Self.Tenants" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Areas">
-        <PropertyRef Name="id_area" />
-      </Principal>
-      <Dependent Role="Tenants">
-        <PropertyRef Name="id_area" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__Gowns__id_catgor__0DAF0CB0">
     <End Role="Catgories" Type="Self.Catgories" Multiplicity="0..1" />
     <End Role="Gowns" Type="Self.Gowns" Multiplicity="*" />
@@ -196,7 +160,6 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="RentingGownDB" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Areas" EntityType="Self.Areas" />
     <EntitySet Name="Catgories" EntityType="Self.Catgories" />
     <EntitySet Name="Colors" EntityType="Self.Colors" />
     <EntitySet Name="Gowns" EntityType="Self.Gowns" />
@@ -204,14 +167,6 @@
     <EntitySet Name="Seasons" EntityType="Self.Seasons" />
     <EntitySet Name="Sets" EntityType="Self.Sets" />
     <EntitySet Name="Tenants" EntityType="Self.Tenants" />
-    <AssociationSet Name="FK__Renters__id_area__25869641" Association="Self.FK__Renters__id_area__25869641">
-      <End Role="Areas" EntitySet="Areas" />
-      <End Role="Renters" EntitySet="Renters" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Tenants__id_area__267ABA7A" Association="Self.FK__Tenants__id_area__267ABA7A">
-      <End Role="Areas" EntitySet="Areas" />
-      <End Role="Tenants" EntitySet="Tenants" />
-    </AssociationSet>
     <AssociationSet Name="FK__Gowns__id_catgor__0DAF0CB0" Association="Self.FK__Gowns__id_catgor__0DAF0CB0">
       <End Role="Catgories" EntitySet="Catgories" />
       <End Role="Gowns" EntitySet="Gowns" />
